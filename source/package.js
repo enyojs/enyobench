@@ -7,10 +7,6 @@ enyo.depends(
 	"$lib/layout",
 	// Internationalization library
 	"$lib/enyo-ilib",
-	// Moonstone UI library
-	"$lib/moonstone",
-	// Focus support library for TV applications
-	"$lib/spotlight",
 	// CSS/LESS style files
 	"style",
 	// Model and data definitions

@@ -1,10 +1,5 @@
 enyo.kind({
-	name: "MyApp.Application",
+	name: "enyoBench.Application",
 	kind: "enyo.Application",
-	controllers: [{
-		name: "messageController",
-		kind: "enyo.Controller",
-		message: $L("Hello World")
-	}],
-	view: "MyApp.MainView"
+	view: "enyoBench.MainView"
 });

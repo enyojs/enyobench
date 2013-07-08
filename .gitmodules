@@ -1,9 +1,3 @@
-[submodule "lib/moonstone"]
-	path = lib/moonstone
-	url = ../moonstone.git
-[submodule "lib/spotlight"]
-	path = lib/spotlight
-	url = ../spotlight.git
 [submodule "lib/layout"]
 	path = lib/layout
 	url = ../layout.git

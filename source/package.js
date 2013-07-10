@@ -5,8 +5,6 @@ enyo.depends(
 	"$lib/enyo-webos",
 	// Layout library
 	"$lib/layout",
-	// Internationalization library
-	"$lib/enyo-ilib",
 	// CSS/LESS style files
 	"style",
 	// Model and data definitions

@@ -1,7 +1,8 @@
 {
     "globals": {
         "enyo": true,
-        "$L": true
+        "$L": true,
+        "enyoBench": false
     },
     "es3": true,
     "evil": false,

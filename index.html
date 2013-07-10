@@ -12,8 +12,21 @@
 		<link href="build/enyo.css" rel="stylesheet"/>
 		<link href="build/app.css" rel="stylesheet"/>
 		<!-- js -->
+		<script>
+			var enyoBench = {
+				timing: {}
+			};
+			enyoBench.timing.enyoLoadStart = Date.now();
+		</script>
 		<script src="build/enyo.js"></script>
+		<script>
+			enyoBench.timing.enyoLoadEnd = Date.now();
+			enyoBench.timing.appLoadStart = Date.now();
+		</script>
 		<script src="build/app.js"></script>
+		<script>
+			enyoBench.timing.appLoadEnd = Date.now();
+		</script>
 	</head>
 	<body class="enyo-unselectable">
 	    <script type="text/javascript">if (undefined === window.enyo) location = "debug.html";</script>

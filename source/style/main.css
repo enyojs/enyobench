@@ -1,3 +1,16 @@
 .main-view {
 	background-color: #eee;
 }
+
+.main-labeled-time-label {
+	font-weight: bold;
+}
+
+.main-labeled-time-label::after {
+	content: ": ";
+	font-weight: bold;
+}
+
+.main-labeled-time-data::after {
+	content: " ms";
+}

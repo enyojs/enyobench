@@ -25,11 +25,16 @@ enyo.kind({
 	mixins: ["enyo.AutoBindingSupport"],
 	components: [
 		{tag: "h1", content: "EnyoBench"},
-		{tag: "ul",	components: [
-			{kind: "enyoBench.LabeledTime", label: "Enyo Start", bindFrom: ".enyoLoadStart", bindTo: "time"},
-			{kind: "enyoBench.LabeledTime", label: "Enyo Stop",  bindFrom: ".enyoLoadEnd",   bindTo: "time"},
-			{kind: "enyoBench.LabeledTime", label: "App Start",  bindFrom: ".appLoadStart",  bindTo: "time"},
-			{kind: "enyoBench.LabeledTime", label: "App End",    bindFrom: ".appLoadEnd",    bindTo: "time"}
+		{tag: "ul", defaultKind: "enyoBench.LabeledTime", components: [
+			{label: "fetchStart", bindFrom: ".fetchStart", bindTo: "time"},
+			{label: "enyo.js Load Start", bindFrom: ".enyoLoadStart", bindTo: "time"},
+			{label: "enyo.js Load End", bindFrom: ".enyoLoadEnd", bindTo: "time"},
+			{label: "app.js Load Start", bindFrom: ".appLoadStart", bindTo: "time"},
+			{label: "app.js Load End", bindFrom: ".appLoadEnd", bindTo: "time"},
+			{label: "domInteractive", bindFrom: ".domInteractive", bindTo: "time"},
+			{label: "domContentLoadedEventStart", bindFrom: ".domContentLoadedEventStart", bindTo: "time"},
+			{label: "domContentLoadedEventEnd", bindFrom: ".domContentLoadedEventEnd", bindTo: "time"},
+			{label: "domComplete", bindFrom: ".domComplete", bindTo: "time"}
 		]}
 	]
 });

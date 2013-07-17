@@ -7,6 +7,8 @@ enyo.depends(
 	"$lib/layout",
 	// CSS/LESS style files
 	"style",
+	// extra code
+	"ext",
 	// Model and data definitions
 	"models",
 	// Controller kinds for the application(s)

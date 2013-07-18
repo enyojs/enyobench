@@ -25,6 +25,8 @@ enyo.kind({
 	mixins: ["enyo.AutoBindingSupport"],
 	components: [
 		{tag: "h1", content: "EnyoBench"},
+		{name: "loadedFrom"},
+		{kind: "enyo.Button", content: "Reload", ontap: "reloadApp"},
 		{tag: "ul", defaultKind: "enyoBench.LabeledTime", components: [
 			{label: "fetchStart", bindFrom: ".fetchStart", bindTo: "time"},
 			{label: "enyo.js Load Start", bindFrom: ".enyoLoadStart", bindTo: "time"},
@@ -36,5 +38,12 @@ enyo.kind({
 			{label: "domContentLoadedEventEnd", bindFrom: ".domContentLoadedEventEnd", bindTo: "time"},
 			{label: "domComplete", bindFrom: ".domComplete", bindTo: "time"}
 		]}
-	]
+	],
+	create: function() {
+		this.inherited(arguments);
+		this.$.loadedFrom.setContent("loaded from " + window.location.toString());
+	},
+	reloadApp: function() {
+		window.location.reload();
+	}
 });

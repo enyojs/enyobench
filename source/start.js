@@ -1,3 +1,8 @@
+/* global app: true */
+new enyoBench.Application({name: "app", renderOnStart: false});
+
 enyo.ready(function () {
-	new enyoBench.Application({name: "app"});
+	// some timing values aren't ready until we can run.
+	app.updateTimings();
+	app.render();
 });

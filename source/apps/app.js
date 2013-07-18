@@ -4,10 +4,7 @@ enyo.kind({
 	view: {
 		kind: "enyoBench.MainView"
 	},
-	// called when application starts
-	start: function () {
-		this.inherited(arguments);
-
+	updateTimings: function() {
 		// pull in timing data from browser
 		enyo.mixin(enyoBench.timing, window.performance.timing);
 

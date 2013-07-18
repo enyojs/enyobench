@@ -10,6 +10,3 @@
 [submodule "lib/enyo-webos"]
 	path = lib/enyo-webos
 	url = ../enyo-webos.git
-[submodule "lib/enyo-ilib"]
-	path = lib/enyo-ilib
-	url = ../enyo-ilib.git

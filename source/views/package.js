@@ -1,3 +1,5 @@
 enyo.depends(
-	"main.js"
+	"LabeledTime.js",
+	"FormattedTestResult.js",
+	"ReportView.js"
 );

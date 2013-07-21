@@ -11,8 +11,8 @@ enyo.depends(
 	"ext",
 	// Model and data definitions
 	"models",
-	// Controller kinds for the application(s)
-	"controllers",
+	// Test kinds to be run by the application
+	"tests",
 	// View kind definitions
 	"views",
 	// Application kind definitions

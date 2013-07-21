@@ -1,17 +1,52 @@
-.main-view {
+/* enyoBench.ReportView */
+.report-view {
 	background-color: #eee;
-	padding: 30px;
+	padding: 10px;
 }
 
-.main-labeled-time-label {
+/* enyoBench.LabeledTime */
+.labeled-time-label {
 	font-weight: bold;
 }
-
-.main-labeled-time-label::after {
+.labeled-time-label::after {
 	content: ": ";
 	font-weight: bold;
 }
-
-.main-labeled-time-data::after {
+.labeled-time-data::after {
 	content: " ms";
+}
+
+/* enyoBench.FormattedTestResult */
+.formatted-test-result-label {
+	font-weight: bold;
+}
+.formatted-test-result-label::after {
+	content: ": ";
+	font-weight: bold;
+}
+.formatted-test-result-start::before {
+	content: "from ";
+}
+.formatted-test-result-start::after {
+	content: " ms to ";
+}
+.formatted-test-result-end::after {
+	content: " ms ";
+}
+.formatted-test-result-duration::before {
+	content: "(";
+}
+.formatted-test-result-duration::after {
+	content: " ms total)";
+}
+
+/* enyoBench.PanelsTest */
+.panelstest-panels {
+	min-height: 320px;
+	min-width: 320px;
+}
+.panelstest-panels div {
+	border: 2px solid #333;
+	font-size: 5em;
+	text-align: center;
 }

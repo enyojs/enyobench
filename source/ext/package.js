@@ -1,3 +1,4 @@
 enyo.depends(
-	"fps.js"
+	"fps.js",
+	"numberFormat.js"
 );

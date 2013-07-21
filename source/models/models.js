@@ -1,18 +1,44 @@
-/*
-	enyoBench.timing is an object that stores locally gathered timing data of
-	timestamps from the Date.now() call (matching the values from
-	window.performance.timing).
+// these will be used in the future with DataRepeater is acting sane and I've figured
+// out exactly how to bind to the multiple collections
 
-	Since these are created as part of the page's index.html call, we don't define
-	anything here, but we do document the values.
-*/
+enyo.kind({
+	name: "enyoBench.TimestampModel",
+	kind: "enyo.Model",
+	attributes: {
+		display: { type: String },
+		time:    { type: Number }
+	}
+});
 
-enyoBench.timing = enyoBench.timing || {
-	// this records the time before and after the script tag that loads enyo.js
-	enyoLoadStart: 0,
-	enyoLoadEnd: 0,
+enyo.kind({
+	name: "enyoBench.TestResultModel",
+	kind: "enyo.Model",
+	attributes: {
+		name:     { type: String },
+		start:    { type: Number },
+		end:      { type: Number },
+		duration: { type: Number },
+		fps:      { type: Number } // can be NaN to indicate no result
+	}
+});
 
-	// this records the time before and after the script tag that loads app.js
-	appLoadStart: 0,
-	appLoadEnd: 0
-};
+enyo.kind({
+	name: "enyoBench.ResultsModel",
+	kind: "enyo.Model",
+	attributes: {
+
+		// this is the collection of startup times to display
+		timestamps: {
+			relation: enyo.toMany({
+				model: "enyoBench.TimestampModel"
+			})
+		},
+
+		// this is the collection of test values
+		testResults: {
+			relation: enyo.toMany({
+				model: "enyoBench.TestResultModel"
+			})
+		}
+	}
+});

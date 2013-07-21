@@ -3,7 +3,7 @@ enyo.kind({
 	name: "enyoBench.FormattedTestResult",
 	classes: "formatted-test-result",
 	mixins: ["enyo.AutoBindingSupport"],
-	tag: "li",
+	tag: null,
 	published: {
 		//* string to use as label for test
 		label: "",
@@ -17,18 +17,24 @@ enyo.kind({
 		fps: 0
 	},
 	components: [
-		{tag: "span", classes: "formatted-test-result-label", bindFrom: ".label"},
-		{tag: "span", classes: "formatted-test-result-start", bindFrom: ".startTime", bindTransform: "toFixed"},
-		{tag: "span", classes: "formatted-test-result-end", bindFrom: ".endTime", bindTransform: "toFixed"},
-		{tag: "span", classes: "formatted-test-result-duration", bindFrom: ".duration", bindTransform: "toFixed"},
-		{tag: "span", classes: "formatted-test-result-fps", bindFrom: ".fps", bindTransform: "filterNull"}
+		{tag: "dt", classes: "formatted-test-result-label", bindFrom: ".label"},
+		{tag: "dd", components: [
+			{tag: "span", content: "from "},
+			{tag: "span", bindFrom: ".startTime", bindTransform: "toFixedMS"},
+			{tag: "span", content: " to "},
+			{tag: "span", bindFrom: ".endTime", bindTransform: "toFixedMS"},
+			{tag: "span", content: " ("},
+			{tag: "span", bindFrom: ".duration", bindTransform: "toFixedMS"},
+			{tag: "span", content: ")"},
+			{tag: "span", bindFrom: ".fps", bindTransform: "toFPS"}
+		]}
 	],
-	filterNull: function(inValue) {
+	toFPS: function(inValue) {
 		return (inValue == null)
 			? ""
 			: ", " + formatDecimal(inValue, 2) + " frames per second";
 	},
-	toFixed: function(inValue) {
-		return formatDecimal(inValue, 2);
+	toFixedMS: function(inValue) {
+		return formatDecimal(inValue, 2) + " ms";
 	}
 });

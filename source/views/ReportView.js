@@ -1,15 +1,19 @@
 enyo.kind({
 	name: "enyoBench.ReportView",
-	classes: "report-view",
+	classes: "report-view container-fluid",
 	published: {
 		timestamps: null,
 		results: null
 	},
 	components: [
-		{tag: "h1", content: "EnyoBench"},
-		{name: "loadedFrom"},
-		{kind: "enyo.Button", content: "Reload", ontap: "reloadApp"},
-		{tag: "ul", components: [
+		{classes: "page-header", components: [
+			{tag: "h1", components: [
+				{tag: "span", content: "EnyoBench "},
+				{tag: "small", name: "loadedFrom"},
+				{tag: "a", classes: "btn btn-primary", content: "Reload Page", ontap: "reloadApp"}
+			]}
+		]},
+		{tag: "dl", classes: "dl-horizontal well", components: [
 			{
 				kind: "enyo.Repeater",
 				name: "timeRepeater",
@@ -19,7 +23,7 @@ enyo.kind({
 				]
 			}
 		]},
-		{tag: "ul", components: [
+		{tag: "dl", classes: "dl-horizontal well", components: [
 			{
 				kind: "enyo.Repeater",
 				name: "resultsRepeater",
@@ -32,7 +36,7 @@ enyo.kind({
 	],
 	create: function() {
 		this.inherited(arguments);
-		this.$.loadedFrom.setContent("loaded from " + window.location.toString());
+		this.$.loadedFrom.setContent("loaded from " + window.location.toString() + " ");
 	},
 	reloadApp: function() {
 		window.location.reload();

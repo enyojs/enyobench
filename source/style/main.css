@@ -1,45 +1,9 @@
-/* enyoBench.ReportView */
-.report-view {
-	background-color: #eee;
-	padding: 10px;
+.dl-horizontal dt {
+  width: 240px;
 }
-
-/* enyoBench.LabeledTime */
-.labeled-time-label {
-	font-weight: bold;
+.dl-horizontal dd {
+  margin-left: 260px;
 }
-.labeled-time-label::after {
-	content: ": ";
-	font-weight: bold;
-}
-.labeled-time-data::after {
-	content: " ms";
-}
-
-/* enyoBench.FormattedTestResult */
-.formatted-test-result-label {
-	font-weight: bold;
-}
-.formatted-test-result-label::after {
-	content: ": ";
-	font-weight: bold;
-}
-.formatted-test-result-start::before {
-	content: "from ";
-}
-.formatted-test-result-start::after {
-	content: " ms to ";
-}
-.formatted-test-result-end::after {
-	content: " ms ";
-}
-.formatted-test-result-duration::before {
-	content: "(";
-}
-.formatted-test-result-duration::after {
-	content: " ms total)";
-}
-
 /* enyoBench.PanelsTest */
 .panelstest-panels {
 	min-height: 320px;
@@ -49,4 +13,5 @@
 	border: 2px solid #333;
 	font-size: 5em;
 	text-align: center;
+	line-height: normal;
 }

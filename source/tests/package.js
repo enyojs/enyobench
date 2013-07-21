@@ -1,3 +1,6 @@
 enyo.depends(
-	"PanelTest.js"
+	"SpeedTest.js",
+	"BlankTest.js",
+	"PanelTest.js",
+	"ListScrollingTest.js"
 );

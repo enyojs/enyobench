@@ -17,7 +17,9 @@ enyo.kind({
 	// each test is based on enyo.ViewController and renders
 	// into document.body by default
 	tests: [
-		"enyoBench.PanelTest"
+		"enyoBench.BlankTest",
+		"enyoBench.PanelTest",
+		"enyoBench.ListScrollingTest"
 	],
 	// run all of the tests; when done, render the results
 	runTests: function() {

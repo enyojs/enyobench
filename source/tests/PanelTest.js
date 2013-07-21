@@ -1,7 +1,7 @@
-/* global FPS */
 enyo.kind({
 	name: "enyoBench.PanelTest",
-	kind: "enyo.ViewController",
+	kind: "enyoBench.SpeedTest",
+	testName: "Panel Left-Right Animation",
 	view: enyo.kind({
 		kind: "enyo.FittableRows",
 		components: [
@@ -24,9 +24,6 @@ enyo.kind({
 			}
 		]
 	}),
-	events: {
-		onReportResults: ""
-	},
 	handlers: {
 		onTransitionFinish: "nextStep"
 	},
@@ -35,8 +32,7 @@ enyo.kind({
 	// when previous animation is complete.
 	runTest: function() {
 		this.render();
-		this.testStart = enyo.bench();
-		FPS.startMeasurement();
+		this.inherited(arguments);
 		this.step = 0;
 		this.nextStep();
 	},
@@ -59,20 +55,6 @@ enyo.kind({
 		}
 		this.step++;
 		// stop event propagation
-		return true;
-	},
-	testComplete: function() {
-		FPS.stopMeasurement();
-		var testEnd = enyo.bench();
-		var testDuration = testEnd - this.testStart;
-		var results = {
-			name: "Panel Left-Right Animation Test",
-			start: this.testStart,
-			end: testEnd,
-			duration: testDuration,
-			fps: FPS.averageRateOverTime(testDuration)
-		};
-		this.doReportResults(results);
 		return true;
 	}
 });

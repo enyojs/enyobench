@@ -1,0 +1,10 @@
+{
+	"id": "com.lgsvl.app.enyobench",
+	"name": "EnyoBench",
+	"vendor": "LG Silicon Valley Labs",
+	"type": "web",
+	"version": "0.0.1",
+	"main": "index.html",
+	"icon": "icon.png",
+	"uiRevision": 2
+}

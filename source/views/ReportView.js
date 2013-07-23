@@ -58,6 +58,7 @@ enyo.kind({
 		var item = inEvent.item;
 		var result = this.results[inEvent.index];
 		item.$.testResult.setLabel(result.name);
+		item.$.testResult.setHref("?test=" + result.kind);
 		item.$.testResult.setStartTime(result.start);
 		item.$.testResult.setEndTime(result.end);
 		item.$.testResult.setDuration(result.duration);

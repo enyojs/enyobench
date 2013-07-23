@@ -21,6 +21,16 @@ enyo.kind({
 		"enyoBench.PanelTest",
 		"enyoBench.ListScrollingTest"
 	],
+	create: function() {
+		this.inherited(arguments);
+		// look at window URL query to refine test list
+		if (window.location.search) {
+			var matches = window.location.search.match(/[?&]test=(.*?)(&|$)/);
+			if (matches) {
+				this.tests = [ matches[1] ];
+			}
+		}
+	},
 	// run all of the tests; when done, render the results
 	runTests: function() {
 		this.testResults = [];

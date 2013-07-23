@@ -7,6 +7,8 @@ enyo.kind({
 	published: {
 		//* string to use as label for test
 		label: "",
+		//* URL to link from label
+		href: "",
 		//* Date.now()-based value for when the test started
 		startTime: 0,
 		//* Date.now()-based value for when the test ended
@@ -17,7 +19,7 @@ enyo.kind({
 		fps: 0
 	},
 	components: [
-		{tag: "dt", classes: "formatted-test-result-label", bindFrom: ".label"},
+		{tag: "dt", style: "cursor: pointer", bindFrom: ".label", ontap: "gotoHref"},
 		{tag: "dd", components: [
 			{tag: "span", content: "from "},
 			{tag: "span", bindFrom: ".startTime", bindTransform: "toFixedMS"},
@@ -36,5 +38,11 @@ enyo.kind({
 	},
 	toFixedMS: function(inValue) {
 		return formatDecimal(inValue, 2) + " ms";
+	},
+	gotoHref: function(inSender, inEvent) {
+		if (this.href) {
+			window.location = this.href;
+		}
+		return true;
 	}
 });

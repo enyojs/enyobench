@@ -25,6 +25,7 @@ enyo.kind({
 		var testDuration = testEnd - this.testStart;
 		var results = {
 			name: this.testName,
+			kind: this.kind,
 			start: this.testStart,
 			end: testEnd,
 			duration: testDuration,

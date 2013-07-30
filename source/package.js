@@ -5,6 +5,8 @@ enyo.depends(
 	"$lib/enyo-webos",
 	// Layout library
 	"$lib/layout",
+	// Moonstone library
+	"$lib/moonstone",
 	// CSS/LESS style files
 	"style",
 	// extra code

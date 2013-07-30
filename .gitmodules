@@ -10,3 +10,6 @@
 [submodule "lib/enyo-webos"]
 	path = lib/enyo-webos
 	url = ../enyo-webos.git
+[submodule "lib/moonstone"]
+	path = lib/moonstone
+	url = ../moonstone.git

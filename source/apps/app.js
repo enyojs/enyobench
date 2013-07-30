@@ -19,7 +19,8 @@ enyo.kind({
 	tests: [
 		"enyoBench.BlankTest",
 		"enyoBench.PanelTest",
-		"enyoBench.ListScrollingTest"
+		"enyoBench.ListScrollingTest",
+		"enyoBench.MoonListScrollingTest"
 	],
 	create: function() {
 		this.inherited(arguments);

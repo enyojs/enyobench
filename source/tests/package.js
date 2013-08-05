@@ -3,5 +3,11 @@ enyo.depends(
 	"BlankTest.js",
 	"PanelTest.js",
 	"ListScrollingTest.js",
-	"MoonListScrollingTest.js"
+	"MoonListScrollingTest.js",
+	"MoonEmptyPanelRenderTest.js",
+	"MoonComplexPanelRenderTest.js",
+	"MoonEmptyPanelAnimationForward.js",
+	"MoonEmptyPanelAnimationBackward.js",
+	"MoonComplexPanelAnimationForward.js",
+	"MoonComplexPanelAnimationBackward.js"
 );

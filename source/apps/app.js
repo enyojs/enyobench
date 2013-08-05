@@ -18,9 +18,15 @@ enyo.kind({
 	// into document.body by default
 	tests: [
 		"enyoBench.BlankTest",
-		"enyoBench.PanelTest",
-		"enyoBench.ListScrollingTest",
-		"enyoBench.MoonListScrollingTest"
+ 		"enyoBench.PanelTest",
+ 		"enyoBench.ListScrollingTest",
+ 		"enyoBench.MoonListScrollingTest",
+		"enyoBench.MoonEmptyPanelRenderTest",
+		"enyoBench.MoonComplexPanelRenderTest",
+		"enyoBench.MoonEmptyPanelAnimationForward",
+		"enyoBench.MoonEmptyPanelAnimationBackward",
+		"enyoBench.MoonComplexPanelAnimationForward",
+		"enyoBench.MoonComplexPanelAnimationBackward"
 	],
 	create: function() {
 		this.inherited(arguments);

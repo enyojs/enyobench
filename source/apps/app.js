@@ -18,6 +18,9 @@ enyo.kind({
 	// into document.body by default
 	tests: [
 		"enyoBench.BlankTest",
+		"enyoBench.DispatchTest",
+		"enyoBench.InheritanceTest",
+		"enyoBench.SuperInheritanceTest",
 		"enyoBench.PanelTest",
 		"enyoBench.ListScrollingTest",
 		"enyoBench.MoonListScrollingTest",

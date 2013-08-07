@@ -38,12 +38,13 @@ enyo.kind({
 			]
 		}]
 	}),
-	render: function() {
-		this.inherited(arguments);
-		this.testComplete();
-	},
 	runTest: function() {
 		this.inherited(arguments);
-		this.render();
+		for (var i = 0; i < 20; ++i) {
+			// test creating our view object repeatedly
+			this.render();
+			this.resetView();
+		}
+		this.testComplete();
 	}
 });

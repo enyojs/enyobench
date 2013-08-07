@@ -225,18 +225,18 @@ enyo.kind({
 		if (!enyo.exists(this.step)) {
 			return true;
 		}
-		
+
 		if (this.panels.getIndex() === this.panels.getPanels().length - 1) {
 			this.step = 0;
 		}
-		
+
 		if (this.panels.getIndex() > 0) {
 			this.goPrevious();
 		}
 		else {
 			this.testComplete();
 		}
-		
+
 		this.step++;
 		return true;
 	},

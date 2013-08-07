@@ -1,6 +1,6 @@
 enyo.kind({
 	name: "enyoBench.ReportView",
-	classes: "report-view container-fluid",
+	classes: "report-view container-fluid enyo-selectable",
 	published: {
 		timestamps: null,
 		results: null

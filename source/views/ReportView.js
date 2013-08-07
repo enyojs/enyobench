@@ -25,6 +25,11 @@ enyo.kind({
 		]},
 		{tag: "dl", classes: "dl-horizontal well", components: [
 			{
+				kind: "enyoBench.FormattedTestResult",
+				label: "Run all benchmarks",
+				href: "?test=*"
+			},
+			{
 				kind: "enyo.Repeater",
 				name: "resultsRepeater",
 				onSetupItem: "setupResult",
@@ -47,8 +52,10 @@ enyo.kind({
 	setupTimestamp: function(inSender, inEvent) {
 		var item = inEvent.item;
 		var timestamp = this.timestamps[inEvent.index];
+		item.$.labeledTime.stopNotifications();
 		item.$.labeledTime.setLabel(timestamp.display);
 		item.$.labeledTime.setTime(timestamp.time);
+		item.$.labeledTime.startNotifications();
 		return true;
 	},
 	resultsChanged: function() {
@@ -57,12 +64,14 @@ enyo.kind({
 	setupResult: function(inSender, inEvent) {
 		var item = inEvent.item;
 		var result = this.results[inEvent.index];
+		item.$.testResult.stopNotifications();
 		item.$.testResult.setLabel(result.name);
 		item.$.testResult.setHref("?test=" + result.kind);
 		item.$.testResult.setStartTime(result.start);
 		item.$.testResult.setEndTime(result.end);
 		item.$.testResult.setDuration(result.duration);
 		item.$.testResult.setFps(result.fps);
+		item.$.testResult.startNotifications();
 		return true;
 	}
 });

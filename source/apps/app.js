@@ -18,9 +18,9 @@ enyo.kind({
 	// into document.body by default
 	tests: [
 		"enyoBench.BlankTest",
- 		"enyoBench.PanelTest",
- 		"enyoBench.ListScrollingTest",
- 		"enyoBench.MoonListScrollingTest",
+		"enyoBench.PanelTest",
+		"enyoBench.ListScrollingTest",
+		"enyoBench.MoonListScrollingTest",
 		"enyoBench.MoonEmptyPanelRenderTest",
 		"enyoBench.MoonComplexPanelRenderTest",
 		"enyoBench.MoonEmptyPanelAnimationForward",
@@ -28,14 +28,22 @@ enyo.kind({
 		"enyoBench.MoonComplexPanelAnimationForward",
 		"enyoBench.MoonComplexPanelAnimationBackward"
 	],
+	filter: null,
+	reportFPS: false,
 	create: function() {
 		this.inherited(arguments);
 		// look at window URL query to refine test list
 		if (window.location.search) {
-			var matches = window.location.search.match(/[?&]test=(.*?)(&|$)/);
+			var matches = window.location.search.match(/[?&]test=(\*?)([\w.]*)(\*?)(&|$)/);
 			if (matches) {
-				this.tests = [ matches[1] ];
+				var leadingStar = matches[1] === "*";
+				var trailingStar = matches[3] === "*";
+				this.filter = new RegExp(
+					(leadingStar ? "" : "^") +
+					matches[2] +
+					(trailingStar ? "" : "$"));
 			}
+			this.reportFPS = !!window.location.search.match(/[?&]fps=1(&|$)/);
 		}
 	},
 	// run all of the tests; when done, render the results
@@ -50,6 +58,13 @@ enyo.kind({
 		if (this.$.test) {
 			this.$.test.destroy();
 		}
+		// find the next test to run
+		if (this.filter) {
+			while (this.currentTestIndex < this.tests.length &&
+				!this.filter.exec(this.tests[this.currentTestIndex])) {
+				++this.currentTestIndex;
+			}
+		}
 		// stop running if there are no tests left
 		if (this.currentTestIndex >= this.tests.length) {
 			this.reportFullResults();
@@ -58,7 +73,8 @@ enyo.kind({
 			this.createComponent({
 				kind: test,
 				name: "test",
-				onReportResults: "processTestResults"
+				onReportResults: "processTestResults",
+				reportFPS: this.reportFPS
 			});
 			this.$.test.runTest();
 		}

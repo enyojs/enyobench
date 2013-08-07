@@ -7,6 +7,8 @@ enyo.kind({
 	name: "enyoBench.SpeedTest",
 	kind: "enyo.ViewController",
 	testName: "Abstract Test Kind",
+	// if set to true, record and report JS-based frames-per-second
+	reportFPS: false,
 	events: {
 		onReportResults: ""
 	},
@@ -16,11 +18,15 @@ enyo.kind({
 	// this.testComplete.
 	runTest: function() {
 		this.testStart = enyo.bench();
-		FPS.startMeasurement();
+		if (this.reportFPS) {
+			FPS.startMeasurement();
+		}
 	},
 	// called when test is over
 	testComplete: function() {
-		FPS.stopMeasurement();
+		if (this.reportFPS) {
+			FPS.stopMeasurement();
+		}
 		var testEnd = enyo.bench();
 		var testDuration = testEnd - this.testStart;
 		var results = {
@@ -28,10 +34,19 @@ enyo.kind({
 			kind: this.kind,
 			start: this.testStart,
 			end: testEnd,
-			duration: testDuration,
-			fps: FPS.averageRateOverTime(testDuration)
+			duration: testDuration
 		};
+		if (this.reportFPS) {
+			results.fps = FPS.averageRateOverTime(testDuration);
+		}
 		this.doReportResults(results);
 		return true;
+	},
+	skipTest: function() {
+		var results = {
+			name: this.testName,
+			kind: this.kind
+		};
+		this.doReportResults(results);
 	}
 });

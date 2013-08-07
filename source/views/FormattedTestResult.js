@@ -14,31 +14,32 @@ enyo.kind({
 		//* Date.now()-based value for when the test ended
 		endTime: 0,
 		//* how long the test took in ms
-		duration: 0,
+		duration: null,
 		//* FPS during the test (can be null for n/a)
-		fps: 0
+		fps: null
 	},
 	components: [
 		{tag: "dt", style: "cursor: pointer", bindFrom: ".label", ontap: "gotoHref"},
-		{tag: "dd", components: [
-			{tag: "span", content: "from "},
-			{tag: "span", bindFrom: ".startTime", bindTransform: "toFixedMS"},
-			{tag: "span", content: " to "},
-			{tag: "span", bindFrom: ".endTime", bindTransform: "toFixedMS"},
-			{tag: "span", content: " ("},
-			{tag: "span", bindFrom: ".duration", bindTransform: "toFixedMS"},
-			{tag: "span", content: ")"},
-			{tag: "span", bindFrom: ".fps", bindTransform: "toFPS"}
-		]}
+		{tag: "dd", bindFrom: ".results"}
 	],
-	toFPS: function(inValue) {
-		return (inValue == null)
-			? ""
-			: ", " + formatDecimal(inValue, 2) + " frames per second";
-	},
-	toFixedMS: function(inValue) {
-		return formatDecimal(inValue, 2) + " ms";
-	},
+	results: enyo.computed(function() {
+		var results = "";
+		if (this.startTime != null && this.endTime != null && this.duration != null) {
+			results =
+				"from " + formatDecimal(this.startTime, 2) + " ms " +
+				"to " + formatDecimal(this.endTime, 2) + " ms " +
+				"(" + formatDecimal(this.duration) + " ms)";
+		}
+		if (this.fps != null) {
+			if (results !== "") {
+				results += ", ";
+			}
+			results += formatDecimal(this.fps, 2) + " frames per second";
+		}
+		// add a non-breaking space at end to avoid empty content
+		results += "\xA0";
+		return results;
+	}, "startTime", "endTime", "duration", "fps"),
 	gotoHref: function(inSender, inEvent) {
 		if (this.href) {
 			window.location = this.href;

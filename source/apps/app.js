@@ -14,7 +14,7 @@ enyo.kind({
 		kind: "enyoBench.ReportView"
 	},
 	renderOnStart: false,
-	filter: null,
+	filter: /MATCH NOTHING/,
 	reportFPS: false,
 	create: function() {
 		this.inherited(arguments);
@@ -45,12 +45,10 @@ enyo.kind({
 			this.$.test.destroy();
 		}
 		// find the next test to run
-		if (this.filter) {
-			while (this.currentTestIndex < enyoBench.tests.length &&
-				!this.filter.exec(enyoBench.tests[this.currentTestIndex].kind)) {
-				this.testResults.push(enyoBench.tests[this.currentTestIndex]);
-				++this.currentTestIndex;
-			}
+		while (this.currentTestIndex < enyoBench.tests.length &&
+			!this.filter.exec(enyoBench.tests[this.currentTestIndex].kind)) {
+			this.testResults.push(enyoBench.tests[this.currentTestIndex]);
+			++this.currentTestIndex;
 		}
 		// stop running if there are no tests left
 		if (this.currentTestIndex >= enyoBench.tests.length) {

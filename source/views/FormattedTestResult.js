@@ -2,13 +2,14 @@
 enyo.kind({
 	name: "enyoBench.FormattedTestResult",
 	classes: "formatted-test-result",
-	mixins: ["enyo.AutoBindingSupport"],
 	tag: null,
 	published: {
 		//* string to use as label for test
 		label: "",
 		//* URL to link from label
 		href: "",
+		//* title attribute for link
+		title: "",
 		//* Date.now()-based value for when the test started
 		startTime: 0,
 		//* Date.now()-based value for when the test ended
@@ -19,8 +20,19 @@ enyo.kind({
 		fps: null
 	},
 	components: [
-		{tag: "dt", style: "cursor: pointer", bindFrom: ".label", ontap: "gotoHref"},
-		{tag: "dd", bindFrom: ".results"}
+		{
+			tag: "dt",
+			components: [
+				{kind: "enyo.Anchor", name: "testName"}
+			]
+		},
+		{tag: "dd", name: "results"}
+	],
+	bindings: [
+		{from: ".label", to: ".$.testName.content"},
+		{from: ".title", to: ".$.testName.title"},
+		{from: ".href", to: ".$.testName.href"},
+		{from: ".results", to: ".$.results.content"}
 	],
 	results: enyo.computed(function() {
 		var results = "";

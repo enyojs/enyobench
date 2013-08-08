@@ -1,4 +1,4 @@
-enyo.kind({
+enyoBench.speedKind({
 	name: "enyoBench.MoonListScrollingTest",
 	kind: "enyoBench.SpeedTest",
 	testName: "Vertical List, Moonstone Scroller (1000 items)",

@@ -1,4 +1,4 @@
-enyo.kind({
+enyoBench.speedKind({
 	name: "enyoBench.ListScrollingTest",
 	kind: "enyoBench.SpeedTest",
 	testName: "Vertical List Scrolling (1000 items)",

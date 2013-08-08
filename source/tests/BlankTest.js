@@ -1,6 +1,6 @@
 // simple test that shows a mostly blank page for 1 second. used to calibrate
 // system FPS measurement by testing the browser at rest.
-enyo.kind({
+enyoBench.speedKind({
 	name: "enyoBench.BlankTest",
 	kind: "enyoBench.SpeedTest",
 	testName: "Baseline FPS (Blank Page)",

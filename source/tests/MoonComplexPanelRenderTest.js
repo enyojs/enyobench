@@ -1,4 +1,4 @@
-enyo.kind({
+enyoBench.speedKind({
 	name: "enyoBench.MoonComplexPanelRenderTest",
 	kind: "enyoBench.SpeedTest",
 	testName: "Moonstone Complex Panel Render",

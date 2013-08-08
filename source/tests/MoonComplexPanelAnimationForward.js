@@ -1,4 +1,4 @@
-enyo.kind({
+enyoBench.speedKind({
 	name: "enyoBench.MoonComplexPanelAnimationForward",
 	kind: "enyoBench.SpeedTest",
 	testName: "Moonstone Complex Panel Animation Forward",
@@ -224,14 +224,14 @@ enyo.kind({
 		if (!enyo.exists(this.step)) {
 			return true;
 		}
-		
+
 		if (this.step < this.view.$.panels.getPanels().length - 1) {
 			this.view.$.panels.next();
 		}
 		else {
 			this.testComplete();
 		}
-		
+
 		this.step++;
 		return true;
 	}

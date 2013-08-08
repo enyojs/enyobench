@@ -1,4 +1,4 @@
-enyo.kind({
+enyoBench.speedKind({
 	name: "enyoBench.PanelTest",
 	kind: "enyoBench.SpeedTest",
 	testName: "Panel Left-Right Animation",

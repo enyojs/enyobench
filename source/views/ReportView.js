@@ -67,6 +67,7 @@ enyo.kind({
 		item.$.testResult.stopNotifications();
 		item.$.testResult.setLabel(result.name);
 		item.$.testResult.setHref("?test=" + result.kind);
+		item.$.testResult.setTitle(result.kind);
 		item.$.testResult.setStartTime(result.start);
 		item.$.testResult.setEndTime(result.end);
 		item.$.testResult.setDuration(result.duration);

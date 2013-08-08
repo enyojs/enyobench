@@ -1,4 +1,4 @@
-enyo.kind({
+enyoBench.speedKind({
 	name: "enyoBench.MoonComplexPanelAnimationBackward",
 	kind: "enyoBench.SpeedTest",
 	testName: "Moonstone Complex Panel Animation Backward",

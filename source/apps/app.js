@@ -14,23 +14,6 @@ enyo.kind({
 		kind: "enyoBench.ReportView"
 	},
 	renderOnStart: false,
-	// each test is based on enyo.ViewController and renders
-	// into document.body by default
-	tests: [
-		"enyoBench.BlankTest",
-		"enyoBench.DispatchTest",
-		"enyoBench.InheritanceTest",
-		"enyoBench.SuperInheritanceTest",
-		"enyoBench.PanelTest",
-		"enyoBench.ListScrollingTest",
-		"enyoBench.MoonListScrollingTest",
-		"enyoBench.MoonEmptyPanelRenderTest",
-		"enyoBench.MoonComplexPanelRenderTest",
-		"enyoBench.MoonEmptyPanelAnimationForward",
-		"enyoBench.MoonEmptyPanelAnimationBackward",
-		"enyoBench.MoonComplexPanelAnimationForward",
-		"enyoBench.MoonComplexPanelAnimationBackward"
-	],
 	filter: null,
 	reportFPS: false,
 	create: function() {
@@ -63,18 +46,19 @@ enyo.kind({
 		}
 		// find the next test to run
 		if (this.filter) {
-			while (this.currentTestIndex < this.tests.length &&
-				!this.filter.exec(this.tests[this.currentTestIndex])) {
+			while (this.currentTestIndex < enyoBench.tests.length &&
+				!this.filter.exec(enyoBench.tests[this.currentTestIndex].kind)) {
+				this.testResults.push(enyoBench.tests[this.currentTestIndex]);
 				++this.currentTestIndex;
 			}
 		}
 		// stop running if there are no tests left
-		if (this.currentTestIndex >= this.tests.length) {
+		if (this.currentTestIndex >= enyoBench.tests.length) {
 			this.reportFullResults();
 		} else {
-			var test = this.tests[this.currentTestIndex++];
+			var test = enyoBench.tests[this.currentTestIndex++];
 			this.createComponent({
-				kind: test,
+				kind: test.kind,
 				name: "test",
 				onReportResults: "processTestResults",
 				reportFPS: this.reportFPS

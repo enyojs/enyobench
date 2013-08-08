@@ -1,4 +1,4 @@
-enyo.kind({
+enyoBench.speedKind({
 	name: "enyoBench.InheritanceTest",
 	kind: "enyoBench.SpeedTest",
 	testName: "Call 100,000 methods with 5 levels of this.inherited",
@@ -40,7 +40,7 @@ enyo.kind({
 	}
 });
 
-enyo.kind({
+enyoBench.speedKind({
 	name: "enyoBench.SuperInheritanceTest",
 	kind: "enyoBench.SpeedTest",
 	testName: "Call 100,000 methods with 5 levels of sup.apply",

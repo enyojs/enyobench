@@ -11,13 +11,13 @@ enyoBench.speedKind({
 			fit: true,
 			realtimeFit: true,
 			components: [
-				{kind: "moon.Panel", title: "Moonstone Panel", style: "background: red;"},
-				{kind: "moon.Panel", title: "Moonstone Panel", style: "background: orange;"},
-				{kind: "moon.Panel", title: "Moonstone Panel", style: "background: yellow;"},
-				{kind: "moon.Panel", title: "Moonstone Panel", style: "background: green;"},
-				{kind: "moon.Panel", title: "Moonstone Panel", style: "background: blue;"},
-				{kind: "moon.Panel", title: "Moonstone Panel", style: "background: indigo;"},
-				{kind: "moon.Panel", title: "Moonstone Panel", style: "background: violet;"}
+				{kind: "moon.Panel", title: "Moonstone Panel", classes: "moon-7h", style: "background: red;"},
+				{kind: "moon.Panel", title: "Moonstone Panel", classes: "moon-7h", style: "background: orange;"},
+				{kind: "moon.Panel", title: "Moonstone Panel", classes: "moon-7h", style: "background: yellow;"},
+				{kind: "moon.Panel", title: "Moonstone Panel", classes: "moon-7h", style: "background: green;"},
+				{kind: "moon.Panel", title: "Moonstone Panel", classes: "moon-7h", style: "background: blue;"},
+				{kind: "moon.Panel", title: "Moonstone Panel", classes: "moon-7h", style: "background: indigo;"},
+				{kind: "moon.Panel", title: "Moonstone Panel", classes: "moon-7h", style: "background: violet;"}
 			]
 		}]
 	}),

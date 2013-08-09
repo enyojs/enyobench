@@ -11,7 +11,7 @@ enyoBench.speedKind({
 			fit: true,
 			realtimeFit: true,
 			components: [
-				{kind: "moon.Panel", title: "Moonstone Panel", style: "background: red;", components: [
+				{kind: "moon.Panel", title: "Moonstone Panel", classes: "moon-7h", style: "background: red;", components: [
 					{kind: "moon.Scroller", fit: true, components: [
 						{kind: "moon.ExpandablePicker", content: "Picker", noneText: "None Selected", components: [
 							{content: "Option 1"},
@@ -39,7 +39,7 @@ enyoBench.speedKind({
 						{kind: "moon.ExpandableInput", content: "Disabled Input", noneText: "No Input", disabled:true, value: "I am disabled."}
 					]}
 				]},
-				{kind: "moon.Panel", title: "Moonstone Panel", style: "background: orange;", components: [
+				{kind: "moon.Panel", title: "Moonstone Panel", classes: "moon-7h", style: "background: orange;", components: [
 					{kind: "moon.Scroller", fit: true, components: [
 						{kind: "moon.ExpandablePicker", content: "Picker", noneText: "None Selected", components: [
 							{content: "Option 1"},
@@ -67,7 +67,7 @@ enyoBench.speedKind({
 						{kind: "moon.ExpandableInput", content: "Disabled Input", noneText: "No Input", disabled:true, value: "I am disabled."}
 					]}
 				]},
-				{kind: "moon.Panel", title: "Moonstone Panel", style: "background: yellow;", components: [
+				{kind: "moon.Panel", title: "Moonstone Panel", classes: "moon-7h", style: "background: yellow;", components: [
 					{kind: "moon.Scroller", fit: true, components: [
 						{kind: "moon.ExpandablePicker", content: "Picker", noneText: "None Selected", components: [
 							{content: "Option 1"},
@@ -95,7 +95,7 @@ enyoBench.speedKind({
 						{kind: "moon.ExpandableInput", content: "Disabled Input", noneText: "No Input", disabled:true, value: "I am disabled."}
 					]}
 				]},
-				{kind: "moon.Panel", title: "Moonstone Panel", style: "background: green;", components: [
+				{kind: "moon.Panel", title: "Moonstone Panel", classes: "moon-7h", style: "background: green;", components: [
 					{kind: "moon.Scroller", fit: true, components: [
 						{kind: "moon.ExpandablePicker", content: "Picker", noneText: "None Selected", components: [
 							{content: "Option 1"},
@@ -123,7 +123,7 @@ enyoBench.speedKind({
 						{kind: "moon.ExpandableInput", content: "Disabled Input", noneText: "No Input", disabled:true, value: "I am disabled."}
 					]}
 				]},
-				{kind: "moon.Panel", title: "Moonstone Panel", style: "background: blue;", components: [
+				{kind: "moon.Panel", title: "Moonstone Panel", classes: "moon-7h", style: "background: blue;", components: [
 					{kind: "moon.Scroller", fit: true, components: [
 						{kind: "moon.ExpandablePicker", content: "Picker", noneText: "None Selected", components: [
 							{content: "Option 1"},
@@ -151,7 +151,7 @@ enyoBench.speedKind({
 						{kind: "moon.ExpandableInput", content: "Disabled Input", noneText: "No Input", disabled:true, value: "I am disabled."}
 					]}
 				]},
-				{kind: "moon.Panel", title: "Moonstone Panel", style: "background: indigo;", components: [
+				{kind: "moon.Panel", title: "Moonstone Panel", classes: "moon-7h", style: "background: indigo;", components: [
 					{kind: "moon.Scroller", fit: true, components: [
 						{kind: "moon.ExpandablePicker", content: "Picker", noneText: "None Selected", components: [
 							{content: "Option 1"},
@@ -179,7 +179,7 @@ enyoBench.speedKind({
 						{kind: "moon.ExpandableInput", content: "Disabled Input", noneText: "No Input", disabled:true, value: "I am disabled."}
 					]}
 				]},
-				{kind: "moon.Panel", title: "Moonstone Panel", style: "background: violet;", components: [
+				{kind: "moon.Panel", title: "Moonstone Panel", classes: "moon-7h", style: "background: violet;", components: [
 					{kind: "moon.Scroller", fit: true, components: [
 						{kind: "moon.ExpandablePicker", content: "Picker", noneText: "None Selected", components: [
 							{content: "Option 1"},

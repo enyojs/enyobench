@@ -6,10 +6,13 @@ enyo.depends(
 	"InheritanceTest.js",
 	"ListScrollingTest.js",
 	"MoonListScrollingTest.js",
+	"DataGridListScrollingTest.js",
+	"DataListScrollingTest.js",
 	"MoonEmptyPanelRenderTest.js",
 	"MoonComplexPanelRenderTest.js",
 	"MoonEmptyPanelAnimationForward.js",
 	"MoonEmptyPanelAnimationBackward.js",
 	"MoonComplexPanelAnimationForward.js",
-	"MoonComplexPanelAnimationBackward.js"
+	"MoonComplexPanelAnimationBackward.js",
+	"DrawerTest.js"
 );

@@ -32,8 +32,11 @@ enyoBench.speedKind({
 	// when previous animation is complete.
 	runTest: function() {
 		this.render();
-		this.inherited(arguments);
 		this.step = 0;
+		setTimeout(this.bindSafely("firstStep"), 1000);
+	},
+	firstStep: function() {
+		enyoBench.SpeedTest.prototype.runTest.call(this);
 		this.nextStep();
 	},
 	nextStep: function(inSender, inEvent) {

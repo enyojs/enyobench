@@ -55,9 +55,11 @@ enyo.kind({
 });
 
 enyoBench.speedKind = function(inProps) {
-	enyoBench.tests.push({
-		kind: inProps.name,
-		name: inProps.testName
-	});
-	return enyo.kind(inProps);
+	if (!inProps.disabled) {
+		enyoBench.tests.push({
+			kind: inProps.name,
+			name: inProps.testName
+		});
+		return enyo.kind(inProps);
+	}
 };

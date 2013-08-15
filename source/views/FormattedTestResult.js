@@ -34,7 +34,10 @@ enyo.kind({
 		{from: ".href", to: ".$.testName.href"},
 		{from: ".results", to: ".$.results.content"}
 	],
-	results: enyo.computed(function() {
+	computed: {
+		"results": ["startTime", "endTime", "duration", "fps"]
+	},
+	results: function() {
 		var results = "";
 		if (this.startTime != null && this.endTime != null && this.duration != null) {
 			results =
@@ -51,7 +54,7 @@ enyo.kind({
 		// add a non-breaking space at end to avoid empty content
 		results += "\xA0";
 		return results;
-	}, "startTime", "endTime", "duration", "fps"),
+	},
 	gotoHref: function(inSender, inEvent) {
 		if (this.href) {
 			window.location = this.href;

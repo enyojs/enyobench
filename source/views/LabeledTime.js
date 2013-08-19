@@ -1,7 +1,6 @@
 /* globals formatDecimal */
 enyo.kind({
 	name: "enyoBench.LabeledTime",
-	mixins: ["enyo.AutoBindingSupport"],
 	tag: null,
 	published: {
 		//* string to use as time label
@@ -10,8 +9,12 @@ enyo.kind({
 		time: 0
 	},
 	components: [
-		{tag: "dt", classes: "labeled-time-label", bindFrom: ".label"},
-		{tag: "dd", classes: "labeled-time-data", bindFrom: ".time", bindTransform: "toFixedMS"}
+		{tag: "dt", name: "label", classes: "labeled-time-label"},
+		{tag: "dd", name: "time", classes: "labeled-time-data"}
+	],
+	bindings: [
+		{from: ".label", to: ".$.label.content" },
+		{from: ".time",  to: ".$.time.content", transform: "toFixedMS"}
 	],
 	toFixedMS: function(inValue) {
 		return formatDecimal(inValue, 2) + " ms";

@@ -14,15 +14,15 @@ enyoBench.speedKind({
 			components: [{
 				name: "label"
 			}]
-		}]
+		}],
+		setupItem: function(inSender, inEvent) {
+			var index = inEvent.index;
+			this.$.label.setContent("Moonstone Row " + index);
+			return true;
+		}
 	}),
 	handlers: {
 		onScrollStop: "nextStep"
-	},
-	setupItem: function(inSender, inEvent) {
-		var index = inEvent.index;
-		this.view.$.label.setContent("Moonstone Row " + index);
-		return true;
 	},
 	runTest: function() {
 		this.render();

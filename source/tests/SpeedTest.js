@@ -15,12 +15,16 @@ enyo.kind({
 	events: {
 		onReportResults: ""
 	},
+	create: function() {
+		this.inherited(arguments);
+		this.loggingEnabled = (console && console.time && console.timeEnd);
+	},
 	// call this.render() before or after this depending on if you're
 	// measuring render performance or animation performance.  Also be
 	// sure to setup some sort of callback that will eventually call
 	// this.testComplete.
 	runTest: function() {
-		this.testStart = enyo.bench();
+		this.testStart = this.recordStartTime();
 		if (this.reportFPS) {
 			FPS.startMeasurement();
 		}
@@ -30,7 +34,7 @@ enyo.kind({
 		if (this.reportFPS) {
 			FPS.stopMeasurement();
 		}
-		var testEnd = enyo.bench();
+		var testEnd = this.recordEndTime();
 		var testDuration = testEnd - this.testStart;
 		var results = {
 			name: this.testName,
@@ -51,6 +55,18 @@ enyo.kind({
 			kind: this.kind
 		};
 		this.doReportResults(results);
+	},
+	recordStartTime: function() {
+		if (this.loggingEnabled) {
+			console.time(this.kind);
+		}
+		return enyo.bench();
+	},
+	recordEndTime: function() {
+		if (this.loggingEnabled) {
+			console.timeEnd(this.kind);
+		}
+		return enyo.bench();
 	}
 });
 

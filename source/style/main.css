@@ -1,8 +1,17 @@
+.dl-horizontal {
+    position: relative;
+}
 .dl-horizontal dt {
   width: 360px;
 }
 .dl-horizontal dd {
   margin-left: 400px;
+}
+body .dl-horizontal .enyo-fit {
+	top: 19px;
+	right: 19px;
+	bottom: 19px;
+	left: 19px;
 }
 /* enyoBench.PanelsTest */
 .panelstest-panels {

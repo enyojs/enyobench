@@ -41,8 +41,8 @@ enyo.kind({
 		var results = "";
 		if (this.startTime != null && this.endTime != null && this.duration != null) {
 			results =
-				"from " + formatDecimal(this.startTime, 2) + " ms " +
-				"to " + formatDecimal(this.endTime, 2) + " ms " +
+				"from " + formatDecimal(window.performance.timing.navigationStart + this.startTime, 3) + " ms " +
+				"to " + formatDecimal(window.performance.timing.navigationStart + this.endTime, 3) + " ms " +
 				"(" + formatDecimal(this.duration) + " ms)";
 		}
 		if (this.fps != null) {

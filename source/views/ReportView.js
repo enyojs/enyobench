@@ -5,6 +5,7 @@ enyo.kind({
 		timestamps: null,
 		results: null
 	},
+	layoutKind: "FittableRowsLayout",
 	components: [
 		{classes: "page-header", components: [
 			{tag: "h1", components: [
@@ -23,20 +24,22 @@ enyo.kind({
 				]
 			}
 		]},
-		{tag: "dl", classes: "dl-horizontal well", components: [
-			{
-				kind: "enyoBench.FormattedTestResult",
-				label: "Run all benchmarks",
-				href: "?test=*"
-			},
-			{
-				kind: "enyo.Repeater",
-				name: "resultsRepeater",
-				onSetupItem: "setupResult",
-				components: [
-					{kind: "enyoBench.FormattedTestResult", name: "testResult"}
-				]
-			}
+		{tag: "dl", classes: "dl-horizontal well", fit: true, components: [
+			{kind: "moon.Scroller", classes: "enyo-fit", components: [
+				{
+					kind: "enyoBench.FormattedTestResult",
+					label: "Run all benchmarks",
+					href: "?test=*"
+				},
+				{
+					kind: "enyo.Repeater",
+					name: "resultsRepeater",
+					onSetupItem: "setupResult",
+					components: [
+						{kind: "enyoBench.FormattedTestResult", name: "testResult"}
+					]
+				}
+			]}
 		]}
 	],
 	create: function() {

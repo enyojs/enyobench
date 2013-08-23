@@ -48,3 +48,29 @@ enyoBench.speedKind({
 		return true;
 	}
 });
+
+enyoBench.speedKind({
+	name: "enyoBench.NarrowListScrollingTest",
+	kind: "enyoBench.ListScrollingTest",
+	testName: "Narrow Vertical List Scrolling (1000 items)",
+	view: enyo.kind({
+		kind: "enyo.FittableRows",
+		style: "width: 320px;",
+		components: [{
+			kind: "enyo.List",
+			name: "list",
+			fit: true,
+			touch: true, /* needed to get animated scrolling */
+			count: 1000,
+			onSetupItem: "setupItem",
+			components: [{
+				name: "label"
+			}]
+		}],
+		setupItem: function(inSender, inEvent) {
+			var index = inEvent.index;
+			this.$.label.setContent("Row " + index);
+			return true;
+		}
+	})
+});

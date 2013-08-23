@@ -69,7 +69,7 @@ enyo.kind({
 		var result = this.results[inEvent.index];
 		item.$.testResult.stopNotifications();
 		item.$.testResult.setLabel(result.name);
-		item.$.testResult.setHref("?test=" + result.kind);
+		item.$.testResult.setHref("?test=" + result.kind + (this.app.reportFPS? "&fps=1" : ""));
 		item.$.testResult.setTitle(result.kind);
 		item.$.testResult.setStartTime(result.start);
 		item.$.testResult.setEndTime(result.end);

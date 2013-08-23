@@ -59,7 +59,6 @@ enyoBench.speedKind({
 			kind: "moon.List",
 			name: "list",
 			fit: true,
-			touch: true, /* needed to get animated scrolling */
 			count: 1000,
 			onSetupItem: "setupItem",
 			components: [{
@@ -69,6 +68,34 @@ enyoBench.speedKind({
 		setupItem: function(inSender, inEvent) {
 			var index = inEvent.index;
 			this.$.label.setContent("Moonstone Row " + index);
+			return true;
+		}
+	})
+});
+
+enyoBench.speedKind({
+	name: "enyoBench.StaticMoonScrollingTest",
+	kind: "enyoBench.MoonListScrollingTest",
+	testName: "Static Content, Moonstone Scroller (1000 items)",
+	view: enyo.kind({
+		kind: "enyo.FittableRows",
+		components: [{
+			name: "list",
+			kind: "moon.Scroller",
+			fit: true,
+			components: [{
+				kind: "enyo.Repeater",
+				count: 1000,
+				onSetupItem: "setupItem",
+				components: [{
+					name: "label"
+				}]
+			}]
+		}],
+		setupItem: function(inSender, inEvent) {
+			var index = inEvent.index;
+			var item = inEvent.item;
+			item.$.label.setContent("Moonstone Static Row " + index);
 			return true;
 		}
 	})

@@ -1,4 +1,4 @@
-/* global FPS */
+/* global FPS:true, console: true */
 
 // this is an abstract base-kind for tests in EnyoBench,
 // implementing the boilerplate

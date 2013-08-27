@@ -63,7 +63,7 @@ enyoBench.speedKind({
 		if(this.step >= 10){
 			this.testComplete();
 		}
-		else if (this.step % 2 == 0) {
+		else if (this.step % 2 === 0) {
 			this.view.$.searchDrawer.setOpen(true);
 			setTimeout(enyo.bind(this, "nextStep"), 500);
 		}
@@ -71,7 +71,7 @@ enyoBench.speedKind({
 			this.view.$.searchDrawer.setOpen(false);
 			setTimeout(enyo.bind(this, "nextStep"), 500);
 		}
-		this.step++;	
+		this.step++;
 		return true;
 	}
 });

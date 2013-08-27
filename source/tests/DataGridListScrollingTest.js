@@ -41,11 +41,11 @@ enyoBench.speedKind({
 		if(this.step >= 2){
 			this.testComplete();
 		}
-		else if(this.step == 0) {
+		else if(this.step === 0) {
 			this.view.$.gridList.$.scroller.scrollTo(0,this.view.$.gridList.$.scroller.getScrollBounds().maxTop);
 			setTimeout(enyo.bind(this, "nextStep"), 8000);
 		}
-		else if(this.step == 1) {
+		else if(this.step === 1) {
 			this.view.$.gridList.$.scroller.scrollTo(0,0);
 			setTimeout(enyo.bind(this, "nextStep"), 8000);
 		}

@@ -56,7 +56,7 @@ enyoBench.speedKind({
 		});
 		var Kind2 = enyo.kind({
 			kind: Kind1,
-			foo: enyo.super(function(sup) {
+			foo: enyo.inherit(function(sup) {
 				return function() {
 					this.levels++;
 					sup.apply(this, arguments);
@@ -65,7 +65,7 @@ enyoBench.speedKind({
 		});
 		var Kind3 = enyo.kind({
 			kind: Kind2,
-			foo: enyo.super(function(sup) {
+			foo: enyo.inherit(function(sup) {
 				return function() {
 					this.levels++;
 					sup.apply(this, arguments);
@@ -74,7 +74,7 @@ enyoBench.speedKind({
 		});
 		var Kind4 = enyo.kind({
 			kind: Kind3,
-			foo: enyo.super(function(sup) {
+			foo: enyo.inherit(function(sup) {
 				return function() {
 					this.levels++;
 					sup.apply(this, arguments);
@@ -83,7 +83,7 @@ enyoBench.speedKind({
 		});
 		var Kind5 = enyo.kind({
 			kind: Kind4,
-			foo: enyo.super(function(sup) {
+			foo: enyo.inherit(function(sup) {
 				return function() {
 					this.levels = 1;
 					sup.apply(this, arguments);

@@ -1,0 +1,5 @@
+{
+	"source": ".",
+	"assets": ["appinfo.json", "icon.png", "index.html"],
+	"libs": ["lib/moonstone", "lib/layout", "lib/enyo-webos", "lib/enyo-cordvoa", "lib/spotlight"]
+}

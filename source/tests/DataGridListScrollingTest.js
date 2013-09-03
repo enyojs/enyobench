@@ -9,7 +9,6 @@ enyoBench.speedKind({
 	view: enyo.kind({
 		kind: "enyo.FittableRows",
 		components: [
-			{kind: "enyo.Spotlight"},
 			{name: "gridList", spacing: 20, minWidth: 180, minHeight: 240, kind: "moon.DataGridList", components: [
 				{
 					kind: "moon.GridListImageItem",

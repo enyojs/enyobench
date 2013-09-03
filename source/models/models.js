@@ -25,20 +25,9 @@ enyo.kind({
 enyo.kind({
 	name: "enyoBench.ResultsModel",
 	kind: "enyo.Model",
-	attributes: {
-
-		// this is the collection of startup times to display
-		timestamps: {
-			relation: enyo.toMany({
-				model: "enyoBench.TimestampModel"
-			})
-		},
-
-		// this is the collection of test values
-		testResults: {
-			relation: enyo.toMany({
-				model: "enyoBench.TestResultModel"
-			})
-		}
+	parse: function (data) {
+		data.timestamps = new enyo.Collection(data.timestamps, {model: enyoBench.TimestampModel});
+		data.testResults = new enyo.Collection(data.testResults, {model: enyoBench.TestResultModel});
+		return data;
 	}
 });

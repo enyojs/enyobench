@@ -1,5 +1,5 @@
 {
 	"source": ".",
-	"assets": ["appinfo.json", "icon.png", "index.html"],
-	"libs": ["lib/moonstone", "lib/layout", "lib/enyo-webos", "lib/enyo-cordvoa", "lib/spotlight"]
+	"assets": ["appinfo.json", "icon.png", "index.html", "assets"],
+	"libs": ["lib/moonstone", "lib/layout", "lib/enyo-webos", "lib/enyo-cordova", "lib/spotlight"]
 }

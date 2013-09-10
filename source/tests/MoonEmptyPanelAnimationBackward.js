@@ -1,7 +1,6 @@
 enyoBench.speedKind({
 	name: "enyoBench.MoonEmptyPanelAnimationBackward",
 	kind: "enyoBench.MoonEmptyPanelAnimationForward",
-	disabled: true,
 	testName: "Moonstone Empty Panel Animation Backward",
 	runTest: function() {
 		this.render();

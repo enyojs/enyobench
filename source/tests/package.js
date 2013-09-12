@@ -4,6 +4,7 @@ enyo.depends(
 	"PanelTest.js",
 	"DispatchTest.js",
 	"InheritanceTest.js",
+	"CreateControlTest.js",
 	"ListScrollingTest.js",
 	"MoonListScrollingTest.js",
 	"DataGridListScrollingTest.js",

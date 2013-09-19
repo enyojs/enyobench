@@ -34,6 +34,7 @@ enyo.kind({
 	},
 	// run all of the tests; when done, render the results
 	runTests: function() {
+		enyo.Spotlight.disablePointerMode();
 		this.testResults = [];
 		this.currentTestIndex = 0;
 		enyo.asyncMethod(this, this.runNextTest);
@@ -93,6 +94,7 @@ enyo.kind({
 	},
 	// run after all tests complete, finally renders the main view
 	reportFullResults: function() {
+		enyo.Spotlight.enablePointerMode();
 		this.updateTimings();
 		this.view.setTimestamps(this.timestamps);
 		this.view.setResults(this.testResults);

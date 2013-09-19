@@ -2,8 +2,8 @@ enyoBench.speedKind({
 	name: "enyoBench.DataListScrollingTest",
 	kind: "enyoBench.SpeedTest",
 	testName: "DataList Vertical Scrolling (1000 items)",
-	handlers: {
-		//ontap:"nextStep"
+	handlers:{
+		onScrollStop: "nextStep"
 	},
 	view: enyo.kind({
 		kind: "enyo.FittableRows",
@@ -28,11 +28,11 @@ enyoBench.speedKind({
 		}
 		c.add(r$);
 		this.view.$.gridList.set("controller", c);
-		this.step = 0;
 		this.render();
 		this.inherited(arguments);
-
-		setTimeout(enyo.bind(this, "nextStep"), 2000);
+		// only set step after render complete to avoid bogus events
+		this.step = 0;
+		this.nextStep();
 	},
 	nextStep: function(inSender, inEvent) {
 		// exit early if we get event before test starts
@@ -45,11 +45,9 @@ enyoBench.speedKind({
 		}
 		else if(this.step === 0) {
 			this.view.$.gridList.$.scroller.scrollTo(0,this.view.$.gridList.$.scroller.getScrollBounds().maxTop);
-			setTimeout(enyo.bind(this, "nextStep"), 8000);
 		}
 		else if(this.step === 1) {
 			this.view.$.gridList.$.scroller.scrollTo(0,0);
-			setTimeout(enyo.bind(this, "nextStep"), 8000);
 		}
 		this.step++;
 

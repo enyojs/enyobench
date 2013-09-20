@@ -8,14 +8,18 @@ enyoBench.speedKind({
 	view: enyo.kind({
 		kind: "enyo.FittableRows",
 		components: [
-			{name: "gridList", kind: "moon.DataList", components: [
-				{
-					kind: "moon.ImageItem",
-					source: "assets/default-music.png",
-					bindFrom: ".text",
-					bindTo: ".text"
-				}
-			]}
+			{name: "gridList", kind: "moon.DataList", components: [{
+				components: [
+					{
+						kind: "moon.ImageItem",
+						source: "assets/default-music.png",
+						name: "item"
+					}
+				],
+				bindings: [
+					{ from: ".model.text", to: ".$.item.text"}
+				]
+			}]}
 		]
 	}),
 	create: function () {
@@ -32,7 +36,7 @@ enyoBench.speedKind({
 		this.inherited(arguments);
 		// only set step after render complete to avoid bogus events
 		this.step = 0;
-		this.nextStep();
+		this.startJob("startScrolling", "nextStep", 100);
 	},
 	nextStep: function(inSender, inEvent) {
 		// exit early if we get event before test starts

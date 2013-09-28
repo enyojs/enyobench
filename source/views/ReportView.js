@@ -32,16 +32,31 @@ enyo.kind({
 					href: "?test=*"
 				},
 				{
-					kind: "enyo.Repeater",
+					kind: "enyo.DataRepeater",
 					name: "resultsRepeater",
-					onSetupItem: "setupResult",
-					components: [
-						{kind: "enyoBench.FormattedTestResult", name: "testResult"}
-					]
+					components: [{
+						kind: "enyoBench.FormattedTestResult",
+						bindings: [
+							{from: ".model.name", to: ".label"},
+							{from: ".model.kind", to: ".href", transform: "xformKindToUrl"},
+							{from: ".model.kind", to: ".title"},
+							{from: ".model.start", to: ".startTime"},
+							{from: ".model.end", to: ".endTime"},
+							{from: ".model.duration", to: ".duration"},
+							{from: ".model.fps", to: ".fps"}
+						]
+					}]
 				}
 			]}
 		]}
 	],
+	bindings: [
+		{from: ".resultsCollection", to: ".$.resultsRepeater.controller"}
+	],
+	resultsCollection: null,
+	xformKindToUrl: function(input) {
+		return "?test=" + input + this.app.reportFPS? "&fps=1" : "";
+	},
 	create: function() {
 		this.inherited(arguments);
 		this.$.loadedFrom.setContent("loaded from " + window.location.toString() + " ");
@@ -62,20 +77,6 @@ enyo.kind({
 		return true;
 	},
 	resultsChanged: function() {
-		this.$.resultsRepeater.setCount(this.results.length);
-	},
-	setupResult: function(inSender, inEvent) {
-		var item = inEvent.item;
-		var result = this.results[inEvent.index];
-		item.$.testResult.stopNotifications();
-		item.$.testResult.setLabel(result.name);
-		item.$.testResult.setHref("?test=" + result.kind + (this.app.reportFPS? "&fps=1" : ""));
-		item.$.testResult.setTitle(result.kind);
-		item.$.testResult.setStartTime(result.start);
-		item.$.testResult.setEndTime(result.end);
-		item.$.testResult.setDuration(result.duration);
-		item.$.testResult.setFps(result.fps);
-		item.$.testResult.startNotifications();
-		return true;
+		this.set("resultsCollection", new enyo.Collection(this.results));
 	}
 });

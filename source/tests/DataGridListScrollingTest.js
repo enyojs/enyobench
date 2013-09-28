@@ -8,17 +8,21 @@ enyoBench.speedKind({
 	},
 	view: enyo.kind({
 		kind: "enyo.FittableRows",
-		components: [
-			{name: "gridList", spacing: 20, minWidth: 180, minHeight: 240, kind: "moon.DataGridList", components: [
-				{
-					kind: "moon.GridListImageItem",
-					subCaption: "Sub Caption",
-					source: "./assets/default-music.png",
-					bindFrom: ".text",
-					bindTo: ".caption"
-				}
-			]}
-		]
+		components: [{
+			name: "gridList",
+			spacing: 20,
+			minWidth: 180,
+			minHeight: 240,
+			kind: "moon.DataGridList",
+			components: [{
+				kind: "moon.GridListImageItem",
+				subCaption: "Sub Caption",
+				source: "./assets/default-music.png",
+				bindings: [
+					{ from: ".model.text", to: ".caption" }
+				]
+			}]
+		}]
 	}),
 	runTest: function() {
 		var c = new enyo.Collection();
@@ -31,7 +35,7 @@ enyoBench.speedKind({
 		this.inherited(arguments);
 		// only set step after render complete to avoid bogus events
 		this.step = 0;
-		this.nextStep();
+		this.startJob("startScrolling", "nextStep", 100);
 	},
 	nextStep: function(inSender, inEvent) {
 		// exit early if we get event before test starts
@@ -43,11 +47,9 @@ enyoBench.speedKind({
 		}
 		else if(this.step === 0) {
 			this.view.$.gridList.$.scroller.scrollTo(0,this.view.$.gridList.$.scroller.getScrollBounds().maxTop);
-			// setTimeout(this.bindSafely("nextStep"), 8000);
 		}
 		else if(this.step === 1) {
 			this.view.$.gridList.$.scroller.scrollTo(0,0);
-			// setTimeout(this.bindSafely("nextStep"), 8000);
 		}
 		this.step++;
 

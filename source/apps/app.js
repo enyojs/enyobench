@@ -68,7 +68,9 @@ enyo.kind({
 	processTestResults: function(inSender, inEvent) {
 		this.testResults.push(inEvent);
 		if (window.webOS && window.webOS.info) {
-			window.webOS.info("TESTRESULT", {test: inEvent.display, time: inEvent.time});
+			window.webOS.info("TESTRESULT",
+				{ test: inEvent.name, duration: "inEvent.duration"},
+				"test: " + inEvent.name + ", duration: " + inEvent.duration);
 		}
 		enyo.asyncMethod(this, this.runNextTest);
 		return true;

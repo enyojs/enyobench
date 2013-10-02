@@ -2,6 +2,7 @@ enyoBench.speedKind({
 	name: "enyoBench.MoonComplexPanelRenderTest",
 	kind: "enyoBench.SpeedTest",
 	testName: "Moonstone Complex Panel Render",
+	resetView: true,
 	view: enyo.kind({
 		kind: "moon.Panels",
 		pattern: "activity",
@@ -43,7 +44,7 @@ enyoBench.speedKind({
 		for (var i = 0; i < 20; ++i) {
 			// test creating our view object repeatedly
 			this.render();
-			this.resetView();
+			this.view.destroy();
 		}
 		this.testComplete();
 	}

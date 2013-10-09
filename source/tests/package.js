@@ -17,5 +17,6 @@ enyo.depends(
 	"MoonComplexPanelAnimationForward.js",
 	"MoonComplexPanelAnimationBackward.js",
 	"DrawerTest.js",
-	"RotatingImageTest.js"
+	"RotatingImageTest.js",
+	"MoonItemRenderTest.js"
 );

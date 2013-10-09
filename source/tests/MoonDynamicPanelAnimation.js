@@ -69,7 +69,7 @@ enyoBench.speedKind({
 	},
 	backward: function() {
 		var panels = this.view.$.panels;
-		panels.setIndex(index = panels.getPanels().length - 2);
+		panels.setIndex(panels.getPanels().length - 2);
 	},
 	backgroundColors: ["red", "orange", "yellow", "green", "blue", "indigo", "violet"]
 });

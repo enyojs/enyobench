@@ -18,6 +18,7 @@ enyo.kind({
 	create: function() {
 		this.inherited(arguments);
 		this.loggingEnabled = (console && console.time && console.timeEnd);
+		this.pmTraceEnabled = (window.PalmSystem && window.PalmSystem.PmTraceBefore && window.PalmSystem.PmTraceAfter);
 	},
 	// call this.render() before or after this depending on if you're
 	// measuring render performance or animation performance.  Also be
@@ -60,9 +61,15 @@ enyo.kind({
 		if (this.loggingEnabled) {
 			console.time(this.kind);
 		}
+		if (this.pmTraceEnabled) {
+			window.PalmSystem.PmTraceBefore(this.kind);
+		}
 		return enyo.bench();
 	},
 	recordEndTime: function() {
+		if (this.pmTraceEnabled) {
+			window.PalmSystem.PmTraceAfter(this.kind);
+		}
 		if (this.loggingEnabled) {
 			console.timeEnd(this.kind);
 		}

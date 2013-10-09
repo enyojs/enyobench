@@ -6,7 +6,6 @@ enyoBench.speedKind({
 	view: enyo.kind({
 		kind: "enyo.Control",
 		classes: "enyo-fit",
-		style: "background: blue;",
 		defaultKind: "moon.Item",
 		components: [
 			{content: "Item One"},

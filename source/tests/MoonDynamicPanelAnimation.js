@@ -29,14 +29,14 @@ enyoBench.speedKind({
 	transitionFinish: function(inSender, inEvent) {
 		inEvent = inEvent || {};
 		inEvent.direction = this.calcTransitionDirection(inEvent);
-		
+
 		var direction = this.calcNextDirection(inEvent),
 			functionName = (direction === 1) ? "forward" : (direction === -1) ? "backward" : "testComplete";
-		
+
 		if (inEvent.direction === -1) {
 			this.popPanel();
 		}
-		
+
 		setTimeout(this.bindSafely(functionName), 1000);
 		return true;
 	},
@@ -45,7 +45,7 @@ enyoBench.speedKind({
 	},
 	calcNextDirection: function(inEvent) {
 		var length = this.view.$.panels.getPanels().length;
-		
+
 		if (inEvent.direction === 1) {
 			if (length < this.backgroundColors.length) {
 				return 1;
@@ -55,7 +55,7 @@ enyoBench.speedKind({
 		} else if (inEvent.direction === -1 && length > 2) {
 			return -1;
 		}
-		
+
 		return 0;
 	},
 	popPanel: function() {

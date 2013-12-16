@@ -20,9 +20,6 @@ enyoBench.speedKind({
 			return true;
 		}
 	}),
-	handlers: {
-		onScrollStop: "nextStep"
-	},
 	runTest: function() {
 		this.render();
 		this.inherited(arguments);
@@ -36,9 +33,11 @@ enyoBench.speedKind({
 		}
 		if (this.step === 0) {
 			this.view.$.list.scrollTo(0, this.view.$.list.getScrollBounds().maxTop);
+			this.startJob("scrolledToEnd", "nextStep", 3000);
 		}
 		else if (this.step === 1) {
 			this.view.$.list.scrollTo(0, 0);
+			this.startJob("scrolledToStart", "nextStep", 3000);
 		}
 		else {
 			this.testComplete();

@@ -1,14 +1,16 @@
 enyo.depends(
 	// Cordova (PhoneGap) library
-	"$lib/enyo-cordova",
+	"$lib/enyo-cordova/",
 	// webOS-specific kind library
 	"$lib/enyo-webos",
+	// webOS-specific kind library
+	"$lib/enyo-ilib",
 	// Layout library
 	"$lib/layout",
-	// Spotlight library
-	"$lib/spotlight",
 	// Moonstone library
 	"$lib/moonstone",
+	// Spotlight library
+	"$lib/spotlight",
 	// CSS/LESS style files
 	"style",
 	// extra code

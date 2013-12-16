@@ -16,3 +16,6 @@
 [submodule "lib/spotlight"]
 	path = lib/spotlight
 	url = ../spotlight.git
+[submodule "lib/enyo-ilib"]
+	path = lib/enyo-ilib
+	url = git@github.com:enyojs/enyo-ilib.git

@@ -2,9 +2,6 @@ enyoBench.speedKind({
 	name: "enyoBench.DataListScrollingTest",
 	kind: "enyoBench.SpeedTest",
 	testName: "DataList Vertical Scrolling (1000 items)",
-	handlers:{
-		onScrollStop: "nextStep"
-	},
 	view: enyo.kind({
 		kind: "enyo.FittableRows",
 		components: [
@@ -44,9 +41,11 @@ enyoBench.speedKind({
 		}
 		else if(this.step === 0) {
 			this.view.$.gridList.$.scroller.scrollTo(0,this.view.$.gridList.$.scroller.getScrollBounds().maxTop);
+			this.startJob("scrolledToEnd", "nextStep", 3000);
 		}
 		else if(this.step === 1) {
 			this.view.$.gridList.$.scroller.scrollTo(0,0);
+			this.startJob("scrolledToTop", "nextStep", 3000);
 		}
 		this.step++;
 

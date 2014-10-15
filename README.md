@@ -2,7 +2,7 @@
 
 This is a benchmarking suite to test Enyo performance on browsers and devices.
 
-Each test has it's own specific driver HTML file with its own reporting
+Each test has its own specific driver HTML file with its own reporting
 mechanism. In the final version, we will be able to run all of the tests in
 series and have a single report shown at the end of the tests.
 

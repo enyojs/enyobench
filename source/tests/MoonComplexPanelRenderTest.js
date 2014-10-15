@@ -37,15 +37,22 @@ enyoBench.speedKind({
 					{kind: "moon.ExpandableInput", content: "Disabled Input", noneText: "No Input", disabled:true, value: "I am disabled."}
 				]}
 			]
-		}]
+		}],
+		create: function() {
+			this.log();
+			this.inherited(arguments);
+		}
 	}),
 	runTest: function() {
 		this.inherited(arguments);
 		for (var i = 0; i < 20; ++i) {
 			// test creating our view object repeatedly
 			this.render();
+			this.log('view destroying');
 			this.view.destroy();
+			this.log('view destroyed');
 		}
+		this.resetView = false;
 		this.testComplete();
 	}
 });

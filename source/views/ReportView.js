@@ -15,12 +15,28 @@ enyo.kind({
 			]}
 		]},
 		{tag: "dl", classes: "dl-horizontal well", components: [
-			{
-				kind: "enyo.Repeater",
-				name: "timeRepeater",
-				onSetupItem: "setupTimestamp",
+			{ layoutKind: "FittableColumnsLayout",
 				components: [
-					{kind: "enyoBench.LabeledTime", name: "labeledTime"}
+					{ components: [
+						// TODO: Make this into its own componen that iterates through enyo.version
+						{ content: "Versions", style: "font-size: larger;" },
+						{ content: "Enyo: " + enyo.version.enyo },
+						{ content: "Moonstone: " + enyo.version.moonstone },
+						{ content: "Layout: " + enyo.version.layout },
+						{ content: "Spotlight: " + enyo.version.spotlight },
+						{ content: "Enyo-iLib: " + enyo.version['enyo-ilib'] },
+						{ content: "Enyo-cordova: " + enyo.version['enyo-cordova'] },
+						{ content: "Enyo-webos: " + enyo.version['enyo-webos'] }
+					]},
+					{
+						kind: "enyo.Repeater",
+						name: "timeRepeater",
+						onSetupItem: "setupTimestamp",
+						fit: true,
+						components: [
+							{kind: "enyoBench.LabeledTime", name: "labeledTime"}
+						]
+					}
 				]
 			}
 		]},

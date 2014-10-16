@@ -43,7 +43,10 @@ enyo.kind({
 	runNextTest: function() {
 		// destroy any existing test instance
 		if (this.$.test) {
-			this.$.test.destroy();
+			try {	// Patch for ENYO-354
+				this.$.test.destroy();
+			} catch(err) {
+			}
 		}
 		// find the next test to run
 		while (this.currentTestIndex < enyoBench.tests.length &&

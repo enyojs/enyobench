@@ -53,6 +53,7 @@ body .dl-horizontal .enyo-fit {
 	position: absolute;
 	width: 480px;
 	height: 704px;
+	-webkit-transform-style: preserve-3d;
 	/*-webkit-backface-visibility: hidden;*/
 }
 .img1 {

@@ -32,7 +32,7 @@ enyoBench.speedKind({
 		this.inherited(arguments);
 		// only set step after render complete to avoid bogus events
 		this.step = 0;
-		this.startJob("startScrolling", "nextStep", 100);
+		this.startJob("startScrolling", "nextStep", 1000);
 	},
 	nextStep: function(inSender, inEvent) {
 		// exit early if we get event before test starts

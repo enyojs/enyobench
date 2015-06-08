@@ -3,14 +3,12 @@ enyoBench.speedKind({
 	kind: "enyoBench.SpeedTest",
 	testName: "Vertical List, Moonstone Scroller (1000 items)",
 	view: enyo.kind({
-		kind: "enyo.FittableRows",
 		components: [{
 			kind: "moon.DataList",
 			name: "list",
-			fit: true,
 			renderDelay: null,
 			components: [
-				{ components: [{
+				{kind:'moon.Item', components: [{
 					name: "label"
 				}],
 				bindings: [
@@ -56,15 +54,13 @@ enyoBench.speedKind({
 	kind: "enyoBench.MoonDataListScrollingTest",
 	testName: "Narrow Vertical DataList, Moonstone Scroller (1000 items)",
 	view: enyo.kind({
-		kind: "enyo.FittableRows",
-		style: "width: 320px;",
+		style: "width: 400px;",
 		components: [{
 			kind: "moon.DataList",
 			name: "list",
-			fit: true,
 			renderDelay: null,
 			components: [
-				{ components: [{
+				{kind:'moon.Item', components: [{
 					name: "label"
 				}],
 				bindings: [

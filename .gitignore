@@ -1,2 +1,5 @@
 /build
 /deploy
+node_modules
+lib
+dist

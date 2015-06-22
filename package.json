@@ -4,7 +4,9 @@
   "templateIndex": "index.html",
   "assets": [
     "assets/**/*.*",
-    "style/**/*.*"
+    "style/**/*.*",
+    "appinfo.json",
+    "icon.png"
   ],
   "name": "enyobench"
 }

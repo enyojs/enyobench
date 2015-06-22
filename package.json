@@ -1,0 +1,10 @@
+{
+  "main": "index.js",
+  "private": true,
+  "templateIndex": "index.html",
+  "assets": [
+    "assets/**/*.*",
+    "style/**/*.*"
+  ],
+  "name": "enyobench"
+}

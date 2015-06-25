@@ -56,8 +56,3 @@ module.exports = speedKind({
 		top.destroy();
 	}
 });
-
-enyoBench.tests.push({
-	kind: "enyoBench.DispatchTest",
-	name: "Dispatch 500 Events Through 100 Components"
-});

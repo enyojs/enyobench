@@ -41,7 +41,7 @@ module.exports = kind({
 			]}
 		]},
 		{tag: "dl", classes: "dl-horizontal well", components: [
-			{ kind: FittableColumns,
+			{  layoutKind: FittableColumnsLayout,
 				components: [
 					{ components: [
 						// TODO: Make this into its own componen that iterates through enyo.version
@@ -110,9 +110,9 @@ module.exports = kind({
 		var item = inEvent.item;
 		var result = this.results[inEvent.index];
 		item.$.testResult.stopNotifications();
-		item.$.testResult.setLabel(result.name);
-		item.$.testResult.setHref("?test=" + result.kind + (this.app.reportFPS? "&fps=1" : ""));
-		item.$.testResult.setTitle(result.kind);
+		item.$.testResult.setLabel(result.testName);
+		item.$.testResult.setHref("?test=" + result.name + (this.app.reportFPS? "&fps=1" : ""));
+		item.$.testResult.setTitle(result.name);
 		item.$.testResult.setStartTime(result.start);
 		item.$.testResult.setEndTime(result.end);
 		item.$.testResult.setDuration(result.duration);

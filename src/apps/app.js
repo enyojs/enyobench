@@ -17,27 +17,31 @@ require('../ext/fps');
 require('../ext/numberFormat');
 
 var 
-	tests = [
-		require('../tests/BlankTest'),
-		require('../tests/CreateControlTest'),
-		require('../tests/DataGridListScrollingTest'),
-		require('../tests/DataListScrollingTest'),
-		require('../tests/DispatchTest'),
-		require('../tests/InheritanceTest'),
-		require('../tests/ListScrollingTest'),
-		require('../tests/MoonComplexPanelAnimationBackward'),
-		require('../tests/MoonComplexPanelAnimationForward'),
-		require('../tests/MoonComplexPanelRenderTest'),
-		require('../tests/MoonDynamicPanelAnimation'),
-		require('../tests/MoonEmptyPanelAnimationBackward'),
-		require('../tests/MoonEmptyPanelAnimationForward'),
-		require('../tests/MoonItemRenderTest'),
-		require('../tests/MoonListScrollingTest'),
-		require('../tests/MoonEmptyPanelRenderTest'),
-		require('../tests/MoonSimplePanelAnimationForward'),
-		require('../tests/PanelTest'),
-		require('../tests/RotatingImageTest'),
-	];
+	tests = {
+		'enyoBench.BlankTest' : require('../tests/BlankTest'),
+		'enyoBench.CreateControlTest' : require('../tests/CreateControlTest'),
+		'enyoBench.DataGridListScrollingTest' : require('../tests/DataGridListScrollingTest'),
+		'enyoBench.DataListScrollingTest' : require('../tests/DataListScrollingTest'),
+		'enyoBench.DispatchTest' : require('../tests/DispatchTest'),
+		'enyoBench.InheritanceTest' : require('../tests/InheritanceTest'),
+		'enyoBench.ListScrollingTest' : require('../tests/ListScrollingTest'),
+		'enyoBench.MoonComplexPanelAnimationBackward' : require('../tests/MoonComplexPanelAnimationBackward'),
+		'enyoBench.MoonComplexPanelAnimationForward' : require('../tests/MoonComplexPanelAnimationForward'),
+		'enyoBench.MoonComplexPanelRenderTest' : require('../tests/MoonComplexPanelRenderTest'),
+		'enyoBench.MoonDynamicPanelAnimation' : require('../tests/MoonDynamicPanelAnimation'),
+		'enyoBench.MoonEmptyPanelAnimationBackward' : require('../tests/MoonEmptyPanelAnimationBackward'),
+		'enyoBench.MoonEmptyPanelAnimationForward' : require('../tests/MoonEmptyPanelAnimationForward'),
+		'enyoBench.MoonItemRenderTest' : require('../tests/MoonItemRenderTest'),
+		'enyoBench.MoonDataListScrollingTest' : require('../tests/MoonListScrollingTest'),
+		'enyoBench.MoonEmptyPanelRenderTest' : require('../tests/MoonEmptyPanelRenderTest'),
+		'enyoBench.MoonSimplePanelAnimationForward' : require('../tests/MoonSimplePanelAnimationForward'),
+		'enyoBench.PanelTest' : require('../tests/PanelTest'),
+		'enyoBench.RotatingImageTest' : require('../tests/RotatingImageTest')
+	};
+
+var
+	runTests = []
+
 /*
 	test protocol
 
@@ -50,9 +54,6 @@ var
 module.exports = kind({
 	name: "enyoBench.Application",
 	kind: Application,
-	view: {
-		kind: ReportView
-	},
 	renderOnStart: false,
 	filter: /MATCH NOTHING/,
 	reportFPS: false,
@@ -62,12 +63,7 @@ module.exports = kind({
 		if (window.location.search) {
 			var matches = window.location.search.match(/[?&]test=(\*?)([\w.]*)(\*?)(&|$)/);
 			if (matches) {
-				var leadingStar = matches[1] === "*";
-				var trailingStar = matches[3] === "*";
-				this.filter = new RegExp(
-					(leadingStar ? "" : "^") +
-					matches[2] +
-					(trailingStar ? "" : "$"));
+				runTests.push(tests[matches[2]]);
 			}
 			this.reportFPS = !!window.location.search.match(/[?&]fps=1(&|$)/);
 		}
@@ -88,27 +84,36 @@ module.exports = kind({
 			} catch(err) {
 			}
 		}
+		
+		var i = 0;
 		// find the next test to run
-		while (this.currentTestIndex < enyoBench.tests.length &&
-			!this.filter.exec(enyoBench.tests[this.currentTestIndex].kind)) {
+		while (i < runTests.length) {
 			this.testResults.push(enyoBench.tests[this.currentTestIndex]);
-			++this.currentTestIndex;
+			++i;
 		}
+		
+		console.log(runTests.length, this.currentTestIndex );
+		
 		// stop running if there are no tests left
-		if (this.currentTestIndex >= enyoBench.tests.length) {
+		if (runTests.length <= this.currentTestIndex) {
 			this.reportFullResults();
 		} else {
-			var test = enyoBench.tests[this.currentTestIndex++];
+			var test = runTests[0];
+			
 			this.createComponent({
-				kind: test.kind,
+				kind: test,
 				name: "test",
 				onReportResults: "processTestResults",
 				reportFPS: this.reportFPS
 			});
+			
 			this.$.test.runTest();
 		}
+		
+		++this.currentTestIndex
 	},
 	processTestResults: function(inSender, inEvent) {
+		
 		this.testResults.push(inEvent);
 		if (window.webOS && window.webOS.info) {
 			window.webOS.info("TESTRESULT", {
@@ -144,6 +149,7 @@ module.exports = kind({
 	reportFullResults: function() {
 		Spotlight.enablePointerMode();
 		this.updateTimings();
+		this.view = new ReportView();
 		this.view.setTimestamps(this.timestamps);
 		this.view.setResults(this.testResults);
 		this.render();

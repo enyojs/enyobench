@@ -1,5 +1,9 @@
 var
+	dev = require('enyo/dev'),
 	kind = require('enyo/kind');
+
+var
+	ViewController = require('enyo/ViewController');
 
 /* global FPS:true, console: true */
 
@@ -11,7 +15,7 @@ enyoBench.tests = [];
 
 var SpeedTest = kind({
 	name: "enyoBench.SpeedTest",
-	kind: "enyo.ViewController",
+	kind: ViewController,
 	testName: "Abstract Test Kind",
 	// if set to true, record and report JS-based frames-per-second
 	reportFPS: false,
@@ -67,25 +71,28 @@ var SpeedTest = kind({
 		if (this.pmTraceEnabled) {
 			window.PalmSystem.PmTraceBefore(this.kind);
 		}
-		return enyo.bench();
+		return dev.bench();
 	},
 	recordEndTime: function() {
 		if (this.pmTraceEnabled) {
 			window.PalmSystem.PmTraceAfter(this.kind);
 		}
 		if (this.loggingEnabled) {
-			console.timeEnd(this.kind);
+			console.timeEnd(this.kind.name);
 		}
-		return enyo.bench();
+		return dev.bench();
 	}
 });
 
 module.exports = function(inProps) {
 	if (!inProps.disabled) {
-		enyoBench.tests.push({
+		var index = enyoBench.tests.push({
 			kind: SpeedTest,
-			name: inProps.testName
+			name: inProps.name,
+			testName: inProps.testName
 		});
+		enyoBench.tests[inProps.testName] = enyoBench.tests[index];
+		inProps.kind = SpeedTest;
 		return kind(inProps);
 	}
 };

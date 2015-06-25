@@ -16,7 +16,7 @@ var CreateControlTest =  speedKind({
 	kind: "enyoBench.SpeedTest",
 	testName: "enyo.Control Create & Destroy (x10000)",
 	view: kind({
-		kind: "enyo.Control"
+		kind: Control
 	}),
 	runTest: function() {
 		this.inherited(arguments);

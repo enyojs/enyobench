@@ -67,7 +67,7 @@ var ListScrollingTest = speedKind({
 
 var NarrowListScrollingTest = speedKind({
 	name: "enyoBench.NarrowListScrollingTest",
-	kind: "enyoBench.ListScrollingTest",
+	kind: ListScrollingTest,
 	testName: "Narrow Vertical List Scrolling (1000 items)",
 	view: kind({
 		kind: FittableRows,
@@ -93,7 +93,7 @@ var NarrowListScrollingTest = speedKind({
 
 var StaticScrollingTest = speedKind({
 	name: "enyoBench.StaticScrollingTest",
-	kind: "enyoBench.ListScrollingTest",
+	kind: ListScrollingTest,
 	testName: "Static Content Scrolling (1000 items)",
 	view: kind({
 		kind: FittableRows,

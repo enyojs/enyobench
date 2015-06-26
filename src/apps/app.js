@@ -54,6 +54,9 @@ var
 module.exports = kind({
 	name: "enyoBench.Application",
 	kind: Application,
+	view: {
+		kind: ReportView
+	},
 	renderOnStart: false,
 	filter: /MATCH NOTHING/,
 	reportFPS: false,
@@ -62,8 +65,16 @@ module.exports = kind({
 		// look at window URL query to refine test list
 		if (window.location.search) {
 			var matches = window.location.search.match(/[?&]test=(\*?)([\w.]*)(\*?)(&|$)/);
+			console.log(matches);
 			if (matches) {
 				runTests.push(tests[matches[2]]);
+				if(matches[2] == "*") {
+					runTest.push(tests['enyoBench.BlankTest']);	
+					runTest.push(tests['enyoBench.CreateControlTest']);	
+				}
+			} else {
+				this.testResults.push(tests['enyoBench.BlankTest']);	
+				this.testResults.push(tests['enyoBench.CreateControlTest']);	
 			}
 			this.reportFPS = !!window.location.search.match(/[?&]fps=1(&|$)/);
 		}
@@ -91,8 +102,6 @@ module.exports = kind({
 			this.testResults.push(enyoBench.tests[this.currentTestIndex]);
 			++i;
 		}
-		
-		console.log(runTests.length, this.currentTestIndex );
 		
 		// stop running if there are no tests left
 		if (runTests.length <= this.currentTestIndex) {
@@ -147,11 +156,11 @@ module.exports = kind({
 	},
 	// run after all tests complete, finally renders the main view
 	reportFullResults: function() {
-		Spotlight.enablePointerMode();
+	//	Spotlight.enablePointerMode();
 		this.updateTimings();
 		this.view = new ReportView();
-		this.view.setTimestamps(this.timestamps);
-		this.view.setResults(this.testResults);
+//		this.view.setTimestamps(this.timestamps);
+//		this.view.setResults(this.testResults);
 		this.render();
 	}
 });

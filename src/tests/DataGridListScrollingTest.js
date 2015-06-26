@@ -6,6 +6,7 @@ var
 
 var
 	Control = require('enyo/Control'),
+	Collection = require('enyo/Collection'),
 	FittableRows = require('layout/FittableRows'),
 	DataGridList = require('moonstone/DataGridList'),
 	GridListImageItem = require('moonstone/GridListImageItem');
@@ -40,7 +41,7 @@ module.exports = speedKind({
 		}]
 	}),
 	runTest: function() {
-		var c = new enyo.Collection();
+		var c = new Collection();
 		for (var $i=0, r$=[]; r$.length<1000; ++$i) {
 			r$.push({text: "Item " + $i});
 		}
@@ -54,7 +55,7 @@ module.exports = speedKind({
 	},
 	nextStep: function(inSender, inEvent) {
 		// exit early if we get event before test starts
-		if (!enyo.exists(this.step)) {
+		if (!utils.exists(this.step)) {
 			return true;
 		}
 		if(this.step >= 2){

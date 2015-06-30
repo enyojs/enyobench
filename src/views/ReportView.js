@@ -104,14 +104,19 @@ module.exports = kind({
 		return true;
 	},
 	resultsChanged: function() {
-		this.$.resultsRepeater.setCount(this.results.length);
+		if(this.results){
+			this.$.resultsRepeater.setCount(this.results.length);
+		}
 	},
 	setupResult: function(inSender, inEvent) {
 		var item = inEvent.item;
 		var result = this.results[inEvent.index];
+		
+		console.log(result);
+		
 		item.$.testResult.stopNotifications();
-		item.$.testResult.setLabel(result.testName);
-		item.$.testResult.setHref("?test=" + result.name + (this.app.reportFPS? "&fps=1" : ""));
+		item.$.testResult.setLabel(result.name);
+		item.$.testResult.setHref("?test=" + result.key + (this.app.reportFPS? "&fps=1" : ""));
 		item.$.testResult.setTitle(result.name);
 		item.$.testResult.setStartTime(result.start);
 		item.$.testResult.setEndTime(result.end);

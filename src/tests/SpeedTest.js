@@ -1,6 +1,6 @@
 var
-	dev = require('enyo/dev'),
-	kind = require('enyo/kind');
+	kind = require('enyo/kind'),
+	utils = require('enyo/utils');
 
 var
 	ViewController = require('enyo/ViewController');
@@ -44,12 +44,16 @@ var SpeedTest = kind({
 		}
 		var testEnd = this.recordEndTime();
 		var testDuration = testEnd - this.testStart;
+
+		console.log('test', testEnd, this.testStart);
+		
 		var results = {
 			name: this.testName,
 			kind: this.kind,
 			start: this.testStart,
 			end: testEnd,
-			duration: testDuration
+			duration: testDuration,
+			key: this.key //hacky way to send a key based on the kind name
 		};
 		if (this.reportFPS) {
 			results.fps = FPS.averageRateOverTime(testDuration);
@@ -71,7 +75,7 @@ var SpeedTest = kind({
 		if (this.pmTraceEnabled) {
 			window.PalmSystem.PmTraceBefore(this.kind);
 		}
-		return dev.bench();
+		return utils.perfNow();
 	},
 	recordEndTime: function() {
 		if (this.pmTraceEnabled) {
@@ -80,7 +84,7 @@ var SpeedTest = kind({
 		if (this.loggingEnabled) {
 			console.timeEnd(this.kind.name);
 		}
-		return dev.bench();
+		return utils.perfNow();
 	}
 });
 

@@ -24,6 +24,7 @@ var
 		'enyoBench.DataGridListScrollingTest' : require('../tests/DataGridListScrollingTest'),
 		'enyoBench.DataListScrollingTest' : require('../tests/DataListScrollingTest'),
 		'enyoBench.DispatchTest' : require('../tests/DispatchTest'),
+		'enyoBench.DrawerTest' : require('../tests/DrawerTest'),
 		'enyoBench.InheritanceTest' : require('../tests/InheritanceTest'),
 		'enyoBench.ListScrollingTest' : require('../tests/ListScrollingTest'),
 		'enyoBench.MoonComplexPanelAnimationBackward' : require('../tests/MoonComplexPanelAnimationBackward'),
@@ -73,7 +74,7 @@ module.exports = kind({
 						name: "test",
 						key: matches[2],
 						onReportResults: "processTestResults",
-						//reportFPS: this.reportFPS
+						reportFPS: this.reportFPS
 					});
 
 					this.$.test.runTest();

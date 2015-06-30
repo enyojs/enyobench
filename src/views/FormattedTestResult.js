@@ -57,7 +57,7 @@ module.exports = kind({
 			if (results !== "") {
 				results += ", ";
 			}
-//			results += formatDecimal(this.fps, 2) + " frames per second";
+			results += formatDecimal(this.fps, 2) + " frames per second";
 		}
 		// add a non-breaking space at end to avoid empty content
 		results += "\xA0";

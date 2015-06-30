@@ -20,6 +20,7 @@ var
 	tests = {
 		'enyoBench.BlankTest' : require('../tests/BlankTest'),
 		'enyoBench.CreateControlTest' : require('../tests/CreateControlTest'),
+		'enyoBench.CreateNestedControlTest' : require('../tests/CreateNestedControlTest'),
 		'enyoBench.DataGridListScrollingTest' : require('../tests/DataGridListScrollingTest'),
 		'enyoBench.DataListScrollingTest' : require('../tests/DataListScrollingTest'),
 		'enyoBench.DispatchTest' : require('../tests/DispatchTest'),
@@ -75,7 +76,6 @@ module.exports = kind({
 						//reportFPS: this.reportFPS
 					});
 
-					console.log(this.$.test.key);
 					this.$.test.runTest();
 				}
 				

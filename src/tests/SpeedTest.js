@@ -45,8 +45,6 @@ var SpeedTest = kind({
 		var testEnd = this.recordEndTime();
 		var testDuration = testEnd - this.testStart;
 
-		console.log('test', testEnd, this.testStart);
-		
 		var results = {
 			name: this.testName,
 			kind: this.kind,

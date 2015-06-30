@@ -111,9 +111,6 @@ module.exports = kind({
 	setupResult: function(inSender, inEvent) {
 		var item = inEvent.item;
 		var result = this.results[inEvent.index];
-		
-		console.log(result);
-		
 		item.$.testResult.stopNotifications();
 		item.$.testResult.setLabel(result.name);
 		item.$.testResult.setHref("?test=" + result.key + (this.app.reportFPS? "&fps=1" : ""));

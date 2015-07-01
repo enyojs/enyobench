@@ -8,10 +8,15 @@ var
 	FittableRows = require('layout/FittableRows'),
 	Panels = require('moonstone/Panels'),
 	ExpandablePicker = require('moonstone/ExpandablePicker'),
+	ExpandableInput = require('moonstone/ExpandableInput'),
 	Scroller = require('moonstone/Scroller');
 
 var
 	utils = require('enyo/utils');
+
+
+var
+	SpeedTestKind = require('./SpeedTestKind');
 
 
 var MoonDynamicPanelAnimation = speedKind({
@@ -39,7 +44,7 @@ var MoonDynamicPanelAnimation = speedKind({
 		setTimeout(this.bindSafely("firstStep"), 1000);
 	},
 	firstStep: function() {
-		enyoBench.SpeedTest.prototype.runTest.call(this);
+		SpeedTestKind.prototype.runTest.call(this);
 		this.forward();
 	},
 	transitionFinish: function(inSender, inEvent) {
@@ -117,15 +122,13 @@ var DynamicTestPanel = kind({
 				{content: "Option 2"},
 				{content: "Option 3"}
 			]},
-			{kind: "moon.ExpandableInput", content: "Input", noneText: "No Input"},
-			{kind: "moon.ExpandableInput", content: "Input with Placeholder", noneText: "No Input", placeholder: "Placeholder"},
-			{kind: "moon.ExpandableInput", content: "Input with Value", noneText: "No Input", placeholder: "Placeholder", value: "Text"},
-			{kind: "moon.ExpandableInput", content: "Disabled Input", noneText: "No Input", disabled:true, value: "I am disabled."}
+			{kind: ExpandableInput, content: "Input", noneText: "No Input"},
+			{kind: ExpandableInput, content: "Input with Placeholder", noneText: "No Input", placeholder: "Placeholder"},
+			{kind: ExpandableInput, content: "Input with Value", noneText: "No Input", placeholder: "Placeholder", value: "Text"},
+			{kind: ExpandableInput, content: "Disabled Input", noneText: "No Input", disabled:true, value: "I am disabled."}
 		]}
 	]
 });
 
 
-module.exports = {
-	MoonDynamicPanelAnimation: MoonDynamicPanelAnimation
-};
+module.exports = MoonDynamicPanelAnimation;

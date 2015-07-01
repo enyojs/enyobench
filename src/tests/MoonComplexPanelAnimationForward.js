@@ -17,6 +17,9 @@ var
 var
 	utils = require('enyo/utils');
 
+var
+	SpeedTestKind = require('./SpeedTestKind');
+
 module.exports = speedKind({
 	name: "enyoBench.MoonComplexPanelAnimationForward",
 	kind: "enyoBench.SpeedTest",
@@ -238,12 +241,12 @@ module.exports = speedKind({
 		setTimeout(this.bindSafely("firstStep"), 1000);
 	},
 	firstStep: function() {
-		enyoBench.SpeedTest.prototype.runTest.call(this);
+		SpeedTestKind.prototype.runTest.call(this);
 		this.nextStep();
 	},
 	nextStep: function(inSender, inEvent) {
 		// exit early if we get event before test starts
-		if (!enyo.exists(this.step)) {
+		if (!utils.exists(this.step)) {
 			return true;
 		}
 

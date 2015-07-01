@@ -6,6 +6,7 @@ var
 	kind = require('enyo/kind');
 
 var
+	Collection = require('enyo/Collection'),
 	DataList = require('moonstone/DataList'),
 	FittableRows = require('layout/FittableRows'),
 	Panels = require('moonstone/Panels'),
@@ -40,7 +41,7 @@ var MoonDataListScrollingTest = speedKind({
 		for(i = 0; i < 1000; i++) {
 			data.push({idx: "Moonstone Row " + i});
 		}
-		this.set("view.$.list.collection", new enyo.Collection(data));
+		this.set("view.$.list.collection", new Collection(data));
 		this.render();
 		this.inherited(arguments);
 		this.step = 0;
@@ -48,7 +49,7 @@ var MoonDataListScrollingTest = speedKind({
 	},
 	nextStep: function(inSender, inEvent) {
 		// exit early if we get event before test starts
-		if (!enyo.exists(this.step)) {
+		if (!utils.exists(this.step)) {
 			return true;
 		}
 		if (this.step === 0) {
@@ -145,8 +146,4 @@ var StaticMoonScrollingTest = speedKind({
 
 });
 
-module.exports = {
-	MoonDataListScrollingTest: MoonDataListScrollingTest,
-	NarrowMoonDataListScrollingTest : NarrowMoonDataListScrollingTest,
-	StaticMoonScrollingTest: StaticMoonScrollingTest
-}
+module.exports = MoonDataListScrollingTest;

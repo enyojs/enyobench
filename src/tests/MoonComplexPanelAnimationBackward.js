@@ -14,6 +14,9 @@ var
 var
 	MoonComplexPanelAnimationForward = require('./MoonComplexPanelAnimationForward');
 
+var
+	SpeedTestKind = require('./SpeedTestKind');
+
 module.exports = speedKind({
 	name: "enyoBench.MoonComplexPanelAnimationBackward",
 	kind: MoonComplexPanelAnimationForward,
@@ -25,13 +28,13 @@ module.exports = speedKind({
 	},
 	firstStep: function() {
 		// start test counting now
-		enyoBench.SpeedTest.prototype.runTest.call(this);
+		SpeedTestKind.prototype.runTest.apply(this)
 		this.view.$.panels.setIndex(this.view.$.panels.getPanels().length - 1);
 		// nextStep will be called by transitionFinish
 	},
 	nextStep: function() {
 		// exit early if we get event before test starts
-		if (!enyo.exists(this.step)) {
+		if (!utils.exists(this.step)) {
 			return true;
 		}
 		if (this.view.$.panels.getIndex() > 0) {

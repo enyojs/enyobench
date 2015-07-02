@@ -96,11 +96,13 @@ module.exports = kind({
 				var test = tests[key];
 				  
 				this.createComponent({
-					kind: test,
-					name: key,
-					onReportResults: "processTestResults",
-					//reportFPS: this.reportFPS
+						kind: test,
+						name: "test",
+						key: key,
+						onReportResults: "processTestResults",
+						reportFPS: this.reportFPS
 				});
+
 
 				this.$.test.runTest();
 			  }

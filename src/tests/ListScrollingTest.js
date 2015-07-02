@@ -10,7 +10,7 @@ var
 	List = require('enyo/Repeater'),
 	Repeater = require('enyo/Repeater'),
 	FittableRows = require('layout/FittableRows'),
-	Scroller = require('layout/FittableRows');
+	Scroller = require('enyo/Scroller');
 
 var
 	utils = require('enyo/utils');
@@ -20,7 +20,8 @@ var ListScrollingTest = speedKind({
 	kind: "enyoBench.SpeedTest",
 	testName: "Vertical List Scrolling (1000 items)",
 	view: kind({
-		kind: FittableRows,
+		name: 'scroller',
+		kind: Scroller,
 		components: [{
 			kind: List,
 			name: "list",
@@ -34,7 +35,9 @@ var ListScrollingTest = speedKind({
 		}],
 		setupItem: function(inSender, inEvent) {
 			var index = inEvent.index;
-			this.$.label.setContent("Row " + index);
+			var item = inEvent.item;
+			
+			item.$.label.setContent("Row " + index);
 			return true;
 		}
 	}),
@@ -46,15 +49,15 @@ var ListScrollingTest = speedKind({
 	},
 	nextStep: function(inSender, inEvent) {
 		// exit early if we get event before test starts
-		if (!enyo.exists(this.step)) {
+		if (!utils.exists(this.step)) {
 			return true;
 		}
 		if (this.step === 0) {
-			this.view.$.list.scrollTo(0, this.view.$.list.getScrollBounds().maxTop);
+			this.$.scroller.scrollTo(0, this.$.scroller.getScrollBounds().maxTop);
 			this.startJob("scrolledToEnd", "nextStep", 3000);
 		}
 		else if (this.step === 1) {
-			this.view.$.list.scrollTo(0, 0);
+			this.$.scroller.scrollTo(0, 0);
 			this.startJob("scrolledToStart", "nextStep", 3000);
 		}
 		else {
@@ -65,63 +68,4 @@ var ListScrollingTest = speedKind({
 	}
 });
 
-var NarrowListScrollingTest = speedKind({
-	name: "enyoBench.NarrowListScrollingTest",
-	kind: "enyoBench.ListScrollingTest",
-	testName: "Narrow Vertical List Scrolling (1000 items)",
-	view: kind({
-		kind: FittableRows,
-		style: "width: 320px;",
-		components: [{
-			kind: List,
-			name: "list",
-			fit: true,
-			touch: true, /* needed to get animated scrolling */
-			count: 1000,
-			onSetupItem: "setupItem",
-			components: [{
-				name: "label"
-			}]
-		}],
-		setupItem: function(inSender, inEvent) {
-			var index = inEvent.index;
-			this.$.label.setContent("Row " + index);
-			return true;
-		}
-	})
-});
-
-var StaticScrollingTest = speedKind({
-	name: "enyoBench.StaticScrollingTest",
-	kind: "enyoBench.ListScrollingTest",
-	testName: "Static Content Scrolling (1000 items)",
-	view: kind({
-		kind: FittableRows,
-		components: [{
-			name: "list",
-			kind: Scroller,
-			touch: true,
-			fit: true,
-			components: [{
-				kind: Repeater,
-				count: 1000,
-				onSetupItem: "setupItem",
-				components: [{
-					name: "label"
-				}]
-			}]
-		}],
-		setupItem: function(inSender, inEvent) {
-			var index = inEvent.index;
-			var item = inEvent.item;
-			item.$.label.setContent("Static Row " + index);
-			return true;
-		}
-	})
-});
-
-module.exports = {
-	ListScrollingTest: ListScrollingTest,
-	NarrowListScrollingTest: NarrowListScrollingTest,
-	StaticScrollingTest: StaticScrollingTest
-}
+module.exports = ListScrollingTest;

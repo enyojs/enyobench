@@ -27,7 +27,8 @@ module.exports = speedKind({
 				// explicitly return undefined to allow event to continue
 			}
 		});
-		var top = kind({
+		
+		var t = kind({
 			kind: dispatchTestItem,
 			receivedEvents: 0,
 			handleTestDispatch: function(inSender, inEvent) {
@@ -38,6 +39,8 @@ module.exports = speedKind({
 				return true;
 			}
 		});
+		
+		var top = new t();		
 		var current, i;
 		for (current = top, i = 0; i < 100; ++i) {
 			current = current.createComponent({kind: dispatchTestItem});
@@ -55,9 +58,4 @@ module.exports = speedKind({
 		// TEST TIMING COMPLETE
 		top.destroy();
 	}
-});
-
-enyoBench.tests.push({
-	kind: "enyoBench.DispatchTest",
-	name: "Dispatch 500 Events Through 100 Components"
 });

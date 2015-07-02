@@ -29,6 +29,12 @@
 			};
 			enyoBench.timing.enyoLoadStart = now();
 		</script>
+		
+		{{stylesheets}}
+		{{if href}}<link rel="stylesheet" href="{{href}}"/>{{else}}<style>{{contents}}</style>{{/if}}{{/stylesheets}}
+		{{scripts}}<script{{if src}} src="{{src}}">{{else}}>{{contents}}{{/if}}</script>
+		{{/scripts}}
+		
 	</head>
 	<body class="enyo-unselectable">
 	</body>

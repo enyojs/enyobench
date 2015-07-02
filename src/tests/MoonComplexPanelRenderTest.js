@@ -17,7 +17,6 @@ var
 var
 	utils = require('enyo/utils');
 
-
 module.exports = speedKind({
 	name: "enyoBench.MoonComplexPanelRenderTest",
 	kind: "enyoBench.SpeedTest",
@@ -30,7 +29,7 @@ module.exports = speedKind({
 			kind: Panel,
 			title: "Moonstone Panel",
 			components: [
-				{kind: "moon.Scroller", fit: true, components: [
+				{kind: Scroller, fit: true, components: [
 					{kind: ExpandablePicker, content: "Picker", noneText: "None Selected", components: [
 						{content: "Option 1"},
 						{content: "Option 2", active: true},

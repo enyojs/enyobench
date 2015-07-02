@@ -70,6 +70,11 @@ module.exports = kind({
 			{kind: moonScroller, classes: "enyo-fit", components: [
 				{
 					kind: FormattedResults,
+					label: "List All benchmarks",
+					href: window.location.href.split('?')[0]
+				},				
+				{
+					kind: FormattedResults,
 					label: "Run all benchmarks",
 					href: "?test=*"
 				},
@@ -112,7 +117,7 @@ module.exports = kind({
 		var item = inEvent.item;
 		var result = this.results[inEvent.index];
 		item.$.testResult.stopNotifications();
-		item.$.testResult.setLabel(result.name);
+		item.$.testResult.setLabel((result.prototype && result.prototype.testName) || result.name);
 		item.$.testResult.setHref("?test=" + result.key + (this.app.reportFPS? "&fps=1" : ""));
 		item.$.testResult.setTitle(result.name);
 		item.$.testResult.setStartTime(result.start);

@@ -30,10 +30,20 @@
 			enyoBench.timing.enyoLoadStart = now();
 		</script>
 		
+		<script>
+			enyoBench.timing.enyoLoadEnd = now();
+			enyoBench.timing.appLoadStart = now();
+		</script>
+		
 		{{stylesheets}}
 		{{if href}}<link rel="stylesheet" href="{{href}}"/>{{else}}<style>{{contents}}</style>{{/if}}{{/stylesheets}}
 		{{scripts}}<script{{if src}} src="{{src}}">{{else}}>{{contents}}{{/if}}</script>
 		{{/scripts}}
+		
+		<script>
+			enyoBench.timing.appLoadEnd = now();
+		</script>
+		
 		
 	</head>
 	<body class="enyo-unselectable">

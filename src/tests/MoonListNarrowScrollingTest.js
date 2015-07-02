@@ -5,7 +5,9 @@ var
 	kind = require('enyo/kind');
 
 var
+
 	Collection = require('enyo/Collection'),
+	Item = require('moonstone/Item'),
 	DataList = require('moonstone/DataList'),
 	FittableRows = require('layout/FittableRows'),
 	Panels = require('moonstone/Panels'),
@@ -31,6 +33,7 @@ var NarrowMoonDataListScrollingTest = speedKind({
 			renderDelay: null,
 			components: [
 				{ components: [{
+					kind: Item,
 					name: "label"
 				}],
 				bindings: [

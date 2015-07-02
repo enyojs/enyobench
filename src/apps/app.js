@@ -1,3 +1,9 @@
+/*
+	test protocol
+
+	test system creates a new test instance using createComponent, then calls runTest() on it
+*/
+
 var
 	kind = require('enyo/kind'),
 	utils = require('enyo/utils');
@@ -47,21 +53,12 @@ var
 	};
 
 var
-	runTests = []
-
-/*
-	test protocol
-
-	test system creates a new test instance using createComponent, then calls runTest() on it.
-	At some point in the future, runner gets reportResults event from the test, then uses
-	that to destroy the test and start the next one.  When no tests remain, all reports
-	are shown on screen.
-*/
+	runTests = [];
 
 module.exports = kind({
 	kind: Application,
 	view: ReportView,
-	reportFPS: false,
+	reportFPS: true,
 	create: function(){
 		this.inherited(arguments);
 		this.results = [];
@@ -72,7 +69,8 @@ module.exports = kind({
 			var matches = window.location.search.match(/[?&]test=(\*?)([\w.]*)(\*?)(&|$)/);
 			if (matches) {
 				
-				if(matches[2] != "*") {
+				if(matches[1] != '*' && matches[2] != '*') {
+					
 					var test = tests[matches[2]];
 					this.createComponent({
 						kind: test,
@@ -83,36 +81,61 @@ module.exports = kind({
 					});
 
 					this.$.test.runTest();
+					
+				} else if(matches[1] == '*') {
+					//run all tests
+					this.results = [];
+					for (var key in tests) {
+					  if (tests.hasOwnProperty(key)) {
+						  
+						var test = tests[key];
+						
+						test.key = key;
+						runTests.push(test);
+						  
+					  }
+					}
+					
+					this.runNextTest();
 				}
-				
 			}
 			
 		} else {
-			
-			this.results = [];
+			//list all tests
 			for (var key in tests) {
 			  if (tests.hasOwnProperty(key)) {
-				  
+				
+				//push test to the report list
 				var test = tests[key];
-				  
-				this.createComponent({
-						kind: test,
-						name: "test",
-						key: key,
-						onReportResults: "processTestResults",
-						reportFPS: this.reportFPS
-				});
+				test.key = key;
+				this.results.push(test);
 
-
-				this.$.test.runTest();
 			  }
 			}
 			
+			this.reportFullResults();
 		}
 		
 	},
 	runNextTest : function(){
-		this.reportFullResults();
+		
+		if(runTests.length < 1) {
+			this.reportFullResults();
+			return;
+		}
+		
+		var test = runTests.shift();
+
+		this.createComponent({
+			kind: test,
+			name: "test",
+			key: test.key,
+			onReportResults: "processTestResults",
+			reportFPS: this.reportFPS
+		});
+
+		//these should queue instead
+		this.$.test.runTest();
 	},
 	processTestResults: function(inSender, inEvent) {
 		this.results.push(inEvent);
@@ -127,17 +150,40 @@ module.exports = kind({
 		}
 		utils.asyncMethod(this, this.runNextTest);
 		return true;
-	},		
-	runTests: function(){
+	},
+	//	// enyoBench always gathers startup time separately from
+	// the tests that it runs.  This needs to run before the
+	// report is shown, but after any test rendering is complete.
+	updateTimings: function() {
+		var perfTiming = window.performance.timing;
+		var base = perfTiming.navigationStart;
+		var enyoTiming = enyoBench.timing;
 		
+		this.timestamps = [
+			{ display: "fetchStart",                 time: perfTiming.fetchStart - base },
+			{ display: "enyo.js Load Start",         time: enyoTiming.enyoLoadStart },
+			{ display: "enyo.js Load End",           time: enyoTiming.enyoLoadEnd },
+			{ display: "app.js Load Start",          time: enyoTiming.appLoadStart },
+			{ display: "app.js Load End",            time: enyoTiming.appLoadEnd },
+			{ display: "domInteractive",             time: perfTiming.domInteractive - base },
+			{ display: "domContentLoadedEventStart", time: perfTiming.domContentLoadedEventStart - base },
+			{ display: "domContentLoadedEventEnd",   time: perfTiming.domContentLoadedEventEnd - base },
+			{ display: "domComplete",                time: perfTiming.domComplete - base }
+		];
 	},
 	reportFullResults: function(){
-		this.view.set('results', this.results);
-		
-			Spotlight.enablePointerMode();
 		
 			this.view = new ReportView();
 			this.view.app = this;
+		
+			this.updateTimings();
+		
+			//sets the timestamps on the right side of the summary
+			this.view.setTimestamps(this.timestamps);
+			this.view.set('results', this.results);
+		
+			Spotlight.enablePointerMode();
+		
 
 			//sets the results, and also the test list is derived from this
 			this.view.setResults(this.results);
@@ -146,133 +192,3 @@ module.exports = kind({
 			this.render();
 	}
 });
-//
-//module.exports = kind({
-//	name: "enyoBench.Application",
-//	kind: Application,
-//	view: {
-//		kind: ReportView
-//	},
-//	renderOnStart: false,
-//	filter: /MATCH NOTHING/,
-//	reportFPS: false,
-//	create: function() {
-//		this.inherited(arguments);
-//		// look at window URL query to refine test list
-//		if (window.location.search) {
-//			var matches = window.location.search.match(/[?&]test=(\*?)([\w.]*)(\*?)(&|$)/);
-//			
-//			if (matches) {
-//				runTests.push(tests[matches[2]]);
-//				
-//				if(matches[2] == "*") {
-//					
-//					runTest.push(tests['enyoBench.BlankTest']);	
-//					runTest.push(tests['enyoBench.CreateControlTest']);	
-//				}
-//				
-//			}
-//			this.reportFPS = !!window.location.search.match(/[?&]fps=1(&|$)/);
-//		} else  {
-//			
-//			runTests.push(tests['enyoBench.BlankTest']);	
-//			runTests.push(tests['enyoBench.CreateControlTest']);	
-//		}		
-//	},
-//	// run all of the tests; when done, render the results
-//	runTests: function() {
-//		
-//		Spotlight.disablePointerMode();
-//		this.testResults = [];
-//		this.currentTestIndex = 0;
-//		utils.asyncMethod(this, this.runNextTest);
-//	},
-//	// called asynchronously to process the next test
-//	runNextTest: function() {
-//		
-//		// destroy any existing test instance
-//		if (this.$.test) {
-//			try {	// Patch for ENYO-354
-//				this.$.test.destroy();
-//			} catch(err) {
-//				
-//			}
-//		}
-//		
-//		// stop running if there are no tests left
-//		if (runTests.length < this.currentTestIndex) {
-//			this.reportFullResults();
-//		} else {
-//			var test = runTests[this.currentTestIndex];
-//			
-//			console.log(test);
-//			
-//			this.createComponent({
-//				kind: test,
-//				name: "test",
-//				onReportResults: "processTestResults",
-//				reportFPS: this.reportFPS
-//			});
-//			
-//			this.$.test.runTest();
-//		}
-//		
-//		++this.currentTestIndex
-//	},
-//	processTestResults: function(inSender, inEvent) {
-//		console.log(inEvent);
-//		
-//		this.testResults.push(inEvent);
-//		
-//		if (window.webOS && window.webOS.info) {
-//			window.webOS.info("TESTRESULT", {
-//				test: inEvent.name,
-//				duration: inEvent.duration,
-//				start: inEvent.start,
-//				end: inEvent.end
-//			}, "");
-//		}
-//		utils.asyncMethod(this, this.runNextTest);
-//		return true;
-//	},
-//	
-//	// enyoBench always gathers startup time separately from
-//	// the tests that it runs.  This needs to run before the
-//	// report is shown, but after any test rendering is complete.
-//	updateTimings: function() {
-//		var perfTiming = window.performance.timing;
-//		var base = perfTiming.navigationStart;
-//		var enyoTiming = enyoBench.timing;
-//		this.timestamps = [
-//			{ display: "fetchStart",                 time: perfTiming.fetchStart - base },
-//			{ display: "enyo.js Load Start",         time: enyoTiming.enyoLoadStart },
-//			{ display: "enyo.js Load End",           time: enyoTiming.enyoLoadEnd },
-//			{ display: "app.js Load Start",          time: enyoTiming.appLoadStart },
-//			{ display: "app.js Load End",            time: enyoTiming.appLoadEnd },
-//			{ display: "domInteractive",             time: perfTiming.domInteractive - base },
-//			{ display: "domContentLoadedEventStart", time: perfTiming.domContentLoadedEventStart - base },
-//			{ display: "domContentLoadedEventEnd",   time: perfTiming.domContentLoadedEventEnd - base },
-//			{ display: "domComplete",                time: perfTiming.domComplete - base }
-//		];
-//	},
-//	// run after all tests complete, finally renders the main view
-//	reportFullResults: function() {
-//	
-//		Spotlight.enablePointerMode();
-//		this.updateTimings();
-//		
-//		//needed to add this after moving to enyo modules
-//		this.view = new ReportView();
-//		
-//		//sets the timestamps on the right side of the summary
-//		this.view.setTimestamps(this.timestamps);
-//		
-//		console.log(this.testResults);
-//		
-//		//sets the results, and also the test list is derived from this
-//		this.view.setResults(this.testResults);
-//		
-//		//render the view
-//		this.render();
-//	}
-//});

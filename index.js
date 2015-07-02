@@ -8,5 +8,4 @@ ready(function(){
 	var App = new app();
 	
 	App.renderInto(document.body);
-	App.runTests();	
 });

@@ -21,6 +21,9 @@ module.exports = kind({
 		{from: ".time",  to: ".$.time.content", transform: "toFixedMS"}
 	],
 	toFixedMS: function(inValue) {
-		return '';//formatDecimal(inValue, 2) + " ms";
+		if(typeof inValue != 'undefined') {
+			inValue = formatDecimal(inValue, 2);
+		}
+		return inValue + " ms";
 	}
 });

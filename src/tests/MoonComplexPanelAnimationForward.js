@@ -10,7 +10,7 @@ var
 	ExpandablePicker = require('moonstone/ExpandablePicker'),
 	ExpandableInput = require('moonstone/ExpandableInput'),
 	FittableRows = require('layout/FittableRows'),
-	Panels = require('moonstone/Panels');
+	Panels = require('moonstone/Panels'),
 	Panel = require('moonstone/Panel'),
 	Scroller = require('moonstone/Scroller');
 
@@ -89,7 +89,7 @@ module.exports = speedKind({
 						{kind: ExpandableInput, content: "Disabled Input", noneText: "No Input", disabled:true, value: "I am disabled."}
 					]}
 				]},
-				{kind: moon.Panel, title: "Moonstone Panel", classes: "moon-7h", style: "background: yellow;", components: [
+				{kind: Panel, title: "Moonstone Panel", classes: "moon-7h", style: "background: yellow;", components: [
 					{kind: Scroller, fit: true, components: [
 						{kind: ExpandablePicker, content: "Picker", noneText: "None Selected", components: [
 							{content: "Option 1"},

@@ -6,7 +6,8 @@
     "assets/**/*.*",
     "style/**/*.*",
     "appinfo.json",
-    "icon.png"
+    "icon.png",
+    "splash-background.jpg"
   ],
   "name": "enyobench"
 }

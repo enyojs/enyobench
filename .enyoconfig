@@ -9,8 +9,6 @@
     "canvas",
     "svg",
     "moonstone",
-    "moonstone-extra",
-    "onyx",
     "spotlight",
     "enyo-webos",
     "enyo-ilib"
@@ -21,8 +19,6 @@
     "canvas": "https://github.com/enyojs/canvas.git",
     "svg": "https://github.com/enyojs/svg.git",
     "moonstone": "https://github.com/enyojs/moonstone.git",
-    "moonstone-extra": "https://github.com/enyojs/moonstone-extra.git",
-    "onyx": "https://github.com/enyojs/onyx.git",
     "spotlight": "https://github.com/enyojs/spotlight.git",
     "enyo-webos": "https://github.com/enyojs/enyo-webos.git",
     "enyo-ilib": "https://github.com/enyojs/enyo-ilib.git"
@@ -33,8 +29,6 @@
     "canvas": "2.6.0-dev",
     "svg": "master",
     "moonstone": "2.6.0-dev",
-    "moonstone-extra": "master",
-    "onyx": "2.6.0-dev",
     "spotlight": "2.6.0-dev",
     "enyo-webos": "2.6.0-dev",
     "enyo-ilib": "2.6.0-dev"

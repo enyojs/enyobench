@@ -156,19 +156,21 @@ module.exports = kind({
 	// report is shown, but after any test rendering is complete.
 	updateTimings: function() {
 		var perfTiming = window.performance.timing;
-		var base = perfTiming.navigationStart;
+		var base = perfTiming.navigationStart || 0;
 		var enyoTiming = enyoBench.timing;
 		
 		this.timestamps = [
 			{ display: "fetchStart",                 time: perfTiming.fetchStart - base },
-			{ display: "enyo.js Load Start",         time: enyoTiming.enyoLoadStart },
-			{ display: "enyo.js Load End",           time: enyoTiming.enyoLoadEnd },
-			{ display: "app.js Load Start",          time: enyoTiming.appLoadStart },
-			{ display: "app.js Load End",            time: enyoTiming.appLoadEnd },
+			{ display: "enyo Load Start",            time: enyoTiming.enyoLoadStart },
+			{ display: "enyo Load End",              time: enyoTiming.enyoLoadEnd },
+			{ display: "app Load Start",             time: enyoTiming.appLoadStart },
+			{ display: "app Load End",               time: enyoTiming.appLoadEnd },
 			{ display: "domInteractive",             time: perfTiming.domInteractive - base },
 			{ display: "domContentLoadedEventStart", time: perfTiming.domContentLoadedEventStart - base },
 			{ display: "domContentLoadedEventEnd",   time: perfTiming.domContentLoadedEventEnd - base },
-			{ display: "domComplete",                time: perfTiming.domComplete - base }
+			{ display: "domComplete",                time: perfTiming.domComplete - base },
+			{ display: "enyo Ready",                 time: enyoTiming.enyoReady },
+			{ display: "app Rendered",               time: enyoTiming.appRendered }
 		];
 	},
 	reportFullResults: function(){

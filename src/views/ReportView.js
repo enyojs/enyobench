@@ -3,8 +3,9 @@ var
 	ilib = require('enyo-ilib'),
 	moon = require('moonstone'),
 	layout = require('layout'),
+	canvas = require('canvas'),
+	svg = require('svg'),
 	webos = require('enyo-webos'),
-	cordova = {},
 	spotlight = require('spotlight');
 
 var
@@ -46,13 +47,14 @@ module.exports = kind({
 					{ components: [
 						// TODO: Make this into its own componen that iterates through enyo.version
 						{ content: "Versions", style: "font-size: larger;" },
-						{ content: "Enyo: " + enyo.version },
-						{ content: "Moonstone: " + moon.version },
-						{ content: "Layout: " + layout.version },
-						{ content: "Spotlight: " + spotlight.version },
-						{ content: "Enyo-iLib: " + ilib.enyo.version },
-						{ content: "Enyo-cordova: " + cordova.version },
-						{ content: "Enyo-webos: " + webos.version }
+						{ content: "enyo: " + enyo.version },
+						{ content: "moonstone: " + moon.version },
+						{ content: "spotlight: " + spotlight.version },
+						{ content: "layout: " + layout.version },
+						{ content: "canvas: " + canvas.version },
+						{ content: "svg: " + svg.version },
+						{ content: "enyo-ilib: " + ilib.enyo.version },
+						{ content: "enyo-webos: " + webos.version }
 					]},
 					{
 						kind: Repeater,

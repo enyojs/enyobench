@@ -1,5 +1,8 @@
-/build
-/deploy
+.DS_Store
+**/*/.DS_Store
+node_modules/
+dist/
 node_modules
-lib
+/lib
 dist
+.enyocache

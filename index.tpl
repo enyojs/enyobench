@@ -35,9 +35,10 @@ html(lang="en")
 				style!= stylesheet.contents
 		each script, i in scripts
 			if i == scripts.length - 1
-				script.
-					enyoBench.timing.enyoLoadEnd = now();
-					enyoBench.timing.appLoadStart = now();
+				if scripts.length != 1
+					script.
+						enyoBench.timing.enyoLoadEnd = now();
+						enyoBench.timing.appLoadStart = now();
 			if script.src
 				script(src=script.src)
 			else

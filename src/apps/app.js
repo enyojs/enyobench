@@ -169,8 +169,7 @@ module.exports = kind({
 			{ display: "domContentLoadedEventStart", time: perfTiming.domContentLoadedEventStart - base },
 			{ display: "domContentLoadedEventEnd",   time: perfTiming.domContentLoadedEventEnd - base },
 			{ display: "domComplete",                time: perfTiming.domComplete - base },
-			{ display: "enyo Ready",                 time: enyoTiming.enyoReady },
-			{ display: "app Rendered",               time: enyoTiming.appRendered }
+			{ display: "enyo Ready",                 time: enyoTiming.enyoReady }
 		];
 	},
 	reportFullResults: function(){

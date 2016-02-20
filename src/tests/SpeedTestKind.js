@@ -71,13 +71,13 @@ module.exports = kind({
 			console.time(this.kind);
 		}
 		if (this.pmTraceEnabled) {
-			window.PalmSystem.PmTraceBefore(this.kind);
+			window.PalmSystem.PmTraceBefore(this.kindName);
 		}
 		return utils.perfNow();
 	},
 	recordEndTime: function() {
 		if (this.pmTraceEnabled) {
-			window.PalmSystem.PmTraceAfter(this.kind);
+			window.PalmSystem.PmTraceAfter(this.kindName);
 		}
 		if (this.loggingEnabled) {
 			console.timeEnd(this.kind.name);

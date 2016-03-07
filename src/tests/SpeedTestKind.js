@@ -68,7 +68,7 @@ module.exports = kind({
 	},
 	recordStartTime: function() {
 		if (this.loggingEnabled) {
-			console.time(this.kind);
+			console.time(this.kindName);
 		}
 		if (this.pmTraceEnabled) {
 			window.PalmSystem.PmTraceBefore(this.kindName);
@@ -80,7 +80,7 @@ module.exports = kind({
 			window.PalmSystem.PmTraceAfter(this.kindName);
 		}
 		if (this.loggingEnabled) {
-			console.timeEnd(this.kind.name);
+			console.timeEnd(this.kindName);
 		}
 		return utils.perfNow();
 	}

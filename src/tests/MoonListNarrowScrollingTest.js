@@ -20,7 +20,7 @@ var
 	MoonDataListScrollingTest = require('./MoonListScrollingTest');
 
 var NarrowMoonDataListScrollingTest = speedKind({
-	name: "enyoBench.NarrowMoonDataListScrollingTest",
+	name: "enyoBench.NarrowMoonListScrollingTest",
 	kind: MoonDataListScrollingTest,
 	testName: "Narrow Vertical DataList, Moonstone Scroller (1000 items)",
 	view: kind({

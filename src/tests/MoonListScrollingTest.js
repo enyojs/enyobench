@@ -17,7 +17,7 @@ var
 	utils = require('enyo/utils');
 
 var MoonDataListScrollingTest = speedKind({
-	name: "enyoBench.MoonDataListScrollingTest",
+	name: "enyoBench.MoonListScrollingTest",
 	kind: "enyoBench.SpeedTest",
 	testName: "Vertical List, Moonstone Scroller (1000 items)",
 	view: kind({

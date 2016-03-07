@@ -25,31 +25,31 @@ require('../ext/numberFormat');
 var 
 	tests = {
 		'enyoBench.BlankTest' : require('../tests/BlankTest'),
-		'enyoBench.CreateControlTest' : require('../tests/CreateControlTest'),
-		'enyoBench.CreateNestedControlTest' : require('../tests/CreateNestedControlTest'),
-		'enyoBench.DataGridListScrollingTest' : require('../tests/DataGridListScrollingTest'),
-		'enyoBench.DataListScrollingTest' : require('../tests/DataListScrollingTest'),
+		'enyoBench.PanelTest' : require('../tests/PanelTest'),
 		'enyoBench.DispatchTest' : require('../tests/DispatchTest'),
-		'enyoBench.DrawerTest' : require('../tests/DrawerTest'),
 		'enyoBench.InheritanceTest' : require('../tests/InheritanceTest'),
 		'enyoBench.SuperInheritanceTest' : require('../tests/InheritanceSuperTest'),
+		'enyoBench.CreateControlTest' : require('../tests/CreateControlTest'),
 		'enyoBench.ListScrollingTest' : require('../tests/ListScrollingTest'),
 		'enyoBench.NarrowListScrollingTest' : require('../tests/ListScrollingNarrowTest'),
-		'enyoBench.StaticListScrollingTest' : require('../tests/ListScrollingStaticTest'),
-		'enyoBench.MoonComplexPanelAnimationBackward' : require('../tests/MoonComplexPanelAnimationBackward'),
-		'enyoBench.MoonComplexPanelAnimationForward' : require('../tests/MoonComplexPanelAnimationForward'),
-		'enyoBench.MoonComplexPanelRenderTest' : require('../tests/MoonComplexPanelRenderTest'),
-		'enyoBench.MoonDynamicPanelAnimation' : require('../tests/MoonDynamicPanelAnimation'),
-		'enyoBench.MoonEmptyPanelAnimationBackward' : require('../tests/MoonEmptyPanelAnimationBackward'),
-		'enyoBench.MoonEmptyPanelAnimationForward' : require('../tests/MoonEmptyPanelAnimationForward'),
-		'enyoBench.MoonItemRenderTest' : require('../tests/MoonItemRenderTest'),
-		'enyoBench.MoonDataListScrollingTest' : require('../tests/MoonListScrollingTest'),
-		'enyoBench.NarrowMoonDataListScrollingTest' : require('../tests/MoonListNarrowScrollingTest'),
-		'enyoBench.StaticMoonDataListScrollingTest' : require('../tests/MoonListStaticScrollingTest'),
+		'enyoBench.StaticScrollingTest' : require('../tests/ListScrollingStaticTest'),
+		'enyoBench.MoonListScrollingTest' : require('../tests/MoonListScrollingTest'),
+		'enyoBench.NarrowMoonListScrollingTest' : require('../tests/MoonListNarrowScrollingTest'),
+		'enyoBench.StaticMoonScrollingTest' : require('../tests/MoonListStaticScrollingTest'),
+		'enyoBench.DataGridListScrollingTest' : require('../tests/DataGridListScrollingTest'),
+		'enyoBench.DataListScrollingTest' : require('../tests/DataListScrollingTest'),
 		'enyoBench.MoonEmptyPanelRenderTest' : require('../tests/MoonEmptyPanelRenderTest'),
+		'enyoBench.MoonComplexPanelRenderTest' : require('../tests/MoonComplexPanelRenderTest'),
+		'enyoBench.MoonEmptyPanelAnimationForward' : require('../tests/MoonEmptyPanelAnimationForward'),
+		'enyoBench.MoonEmptyPanelAnimationBackward' : require('../tests/MoonEmptyPanelAnimationBackward'),
 		'enyoBench.MoonSimplePanelAnimationForward' : require('../tests/MoonSimplePanelAnimationForward'),
-		'enyoBench.PanelTest' : require('../tests/PanelTest'),
-		'enyoBench.RotatingImageTest' : require('../tests/RotatingImageTest')
+		'enyoBench.MoonComplexPanelAnimationForward' : require('../tests/MoonComplexPanelAnimationForward'),
+		'enyoBench.MoonComplexPanelAnimationBackward' : require('../tests/MoonComplexPanelAnimationBackward'),
+		'enyoBench.MoonDynamicPanelAnimation' : require('../tests/MoonDynamicPanelAnimation'),
+		'enyoBench.DrawerTest' : require('../tests/DrawerTest'),
+		'enyoBench.RotatingImageTest' : require('../tests/RotatingImageTest'),
+		'enyoBench.MoonItemRenderTest' : require('../tests/MoonItemRenderTest'),
+		'enyoBench.CreateNestedControlTest' : require('../tests/CreateNestedControlTest')
 	};
 
 var
@@ -125,7 +125,7 @@ module.exports = kind({
 		}
 		
 		var test = runTests.shift();
-
+		this.$.test && this.$.test.destroy();
 		this.createComponent({
 			kind: test,
 			name: "test",
